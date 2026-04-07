@@ -1,0 +1,1118 @@
+{
+  "LuaGlobals": {
+    "name": "Luau globals",
+    "type": "global",
+    "summary": "A list of functions and variables that are native to Luau.\n",
+    "description": "The following is a list of functions and variables that are native to Luau.\nThese functions can be used in a standard installation of both\n[Luau](https://luau.org) and [Lua 5.1.4](https://www.lua.org/manual/5.1/),\nthough there are some differences in how some of these work on Roblox.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [
+      {
+        "name": "_G",
+        "type": "Array",
+        "summary": "A table that is shared between all scripts of the same context level.\n",
+        "description": "A table that is shared between all scripts of the same context level.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "_VERSION",
+        "type": "string",
+        "summary": "A global variable that holds a string containing the current interpreter\nversion.\n",
+        "description": "A global variable (not a function) that holds a string containing the\ncurrent interpreter version.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ],
+    "functions": [
+      {
+        "name": "assert",
+        "summary": "Throws an error if the provided `value` resolves to `false` or `nil`.\n",
+        "description": "Throws an error if the provided `value` is `false` or `nil`. If the\nassertion passes, it returns all values passed to it.\n\n```lua\nlocal product = 90 * 4\nassert(product == 360, \"Oh dear, multiplication is broken\")\n-- The line above does nothing, because 90 times 4 is 360\n```\n",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "Variant",
+            "default": null,
+            "summary": "The value that will be asserted against.\n"
+          },
+          {
+            "name": "errorMessage",
+            "type": "string",
+            "default": "assertion failed!",
+            "summary": "The text that will be shown in the error if the assertion fails.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "collectgarbage",
+        "summary": "Performs the specified operation of the garbage collector.\n",
+        "description": "Performs the specified operation of the garbage collector. Note that\nRoblox's Luau sandbox only allows the `count` option to be used (the total\nmemory in use by Luau, in kilobytes), as other options can interfere with\nexisting processes. Effectively, this makes `Global.LuaGlobals.gcinfo()` a\nsuperior alternative that should be used instead.\n",
+        "parameters": [
+          {
+            "name": "operation",
+            "type": "string",
+            "default": null,
+            "summary": "The name of the operation that should be performed by the garbage\ncollector.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "error",
+        "summary": "Halts thread execution and throws an error.\n",
+        "description": "Terminates the last protected function called and outputs `message` as an\nerror message. If the function containing the error is not called in a\nprotected function such as `pcall()`, then the script which called the\nfunction will terminate. The error function itself never returns and acts\nlike a script error.\n\nThe `level` argument specifies how to get the error position. With level\n`1` (the default), the error position is where the error function was\ncalled. Level 2 points the error to where the function that called error\nwas called; and so on. Passing a level `0` avoids the addition of error\nposition information to the message.\n",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "Variant",
+            "default": null,
+            "summary": "The error message to display.\n"
+          },
+          {
+            "name": "level",
+            "type": "int",
+            "default": 1,
+            "summary": "The level of information that should be printed. Defaults to 1.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "gcinfo",
+        "summary": "Returns the total memory heap size in kilobytes.\n",
+        "description": "Returns the total memory heap size in kilobytes. The number reflects the\ncurrent heap consumption from the operating system perspective, which\nfluctuates over time as garbage collector frees objects.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "getfenv",
+        "summary": "Returns the current environment in use by the caller, as a dictionary.\n",
+        "description": "Returns the current environment in use by the caller, as a dictionary.\n\n- If provided with a function, the environment of the function will be\n  returned.\n- If provided with an integer, `Global.LuaGlobals.getfenv()` will provide\n  the environment of the function at the provided stack level: Level 1 is\n  the function calling `Global.LuaGlobals.getfenv()`. If `stack` is `0`,\n  `Global.LuaGlobals.getfenv()` returns the global environment of the\n  current script. When using `Global.LuaGlobals.getfenv()` to get the\n  current environment of a script, it will return the same table every\n  time within the specific thread.\n\n**WARNING:** This function allows uncontrolled change of the\nglobal/function environment and disables script optimizations. Changes to\nthe environment are not tracked by the script analysis tooling and may\nresult in missing or incorrect warnings. As a replacement, consider using\n`Library.debug.info()` instead.\n",
+        "parameters": [
+          {
+            "name": "stack",
+            "type": "Variant",
+            "default": 1,
+            "summary": "The stack level (int) of the environment to be returned; or the\nfunction whose environment will be returned.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "This function allows uncontrolled change of the global/function\nenvironment and disables script optimizations. Changes to the environment\nare not tracked by the script analysis tooling and may result in missing\nor incorrect warnings. As a replacement, consider using\n`Library.debug.info()` instead.\n"
+      },
+      {
+        "name": "getmetatable",
+        "summary": "Returns the metatable of the given table.\n",
+        "description": "Returns the metatable of the given table `t` if it has one, otherwise\nreturns `nil`. If `t` does have a metatable, and the `__metatable`\nmetamethod is set, it returns that value instead.\n\n```lua\n-- Demonstrate getmetatable:\nlocal meta = {}\nlocal t = setmetatable({}, meta)\nprint(getmetatable(t) == meta) --> true\n-- Make the original metatable unrecoverable by setting the __metatable metamethod:\nmeta.__metatable = \"protected\"\nprint(getmetatable(t)) --> protected\n```\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Variant",
+            "default": null,
+            "summary": "The object to fetch the metatable of.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "ipairs",
+        "summary": "Returns an iterator function and the table for use in a for loop.\n",
+        "description": "Returns three values: an iterator function, the table `t` and the number\n`0`. Each time the iterator function is called, it returns the next\nnumerical index-value pair in the table. When used in a generic for-loop,\nthe return values can be used to iterate over each numerical index in the\ntable:\n\n```lua\nlocal fruits = {\"apples\", \"oranges\", \"kiwi\"}\nfor index, fruit in ipairs(fruits) do\n   print(index, fruit) --> 1 apples, 2 oranges, 3 kiwi, etc...\nend\n```\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "A table whose elements are to be iterated over.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          },
+          {
+            "type": "Array",
+            "summary": ""
+          },
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "loadstring",
+        "summary": "Returns the provided code as a function that can be executed.\n",
+        "description": "Loads Luau code from a string and returns it as a function.\n\nUnlike standard Lua 5.1, Roblox's Luau cannot load the compiled bytecode\nusing `loadstring()`.\n\n`loadstring()` is disabled by default. For guidance around enabling it,\nsee `Class.ServerScriptService`.\n\n**WARNING:** This method disables certain Luau optimizations on the\nreturned function. Extreme caution should be taken when using\n`Global.LuaGlobals.loadstring()`; if your intention is to allow users to\nrun code in your experience, make sure to protect the returned function's\nenvironment by using `Global.LuaGlobals.getfenv()` and\n`Global.LuaGlobals.setfenv()`.\n",
+        "parameters": [
+          {
+            "name": "contents",
+            "type": "string",
+            "default": null,
+            "summary": "The specified string to be loaded as Luau code.\n"
+          },
+          {
+            "name": "chunkname",
+            "type": "string",
+            "default": null,
+            "summary": "An optional chunk name for error messages and debug information. If\nunspecified, Luau uses the `contents` string.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "newproxy",
+        "summary": "Creates a blank `userdata`, with the option for it to have a metatable.\n",
+        "description": "Creates a blank `userdata`, with the option for it to have a metatable.\n",
+        "parameters": [
+          {
+            "name": "addMetatable",
+            "type": "bool",
+            "default": false,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "userdata",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "next",
+        "summary": "An iterator function for use in for loops.\n",
+        "description": "Returns the first key/value pair in the array. If a `lastKey` argument was\nspecified then returns the next element in the array based on the key that\nprovided. The order in which the indices are enumerated is not specified,\neven for numeric indices. To traverse a table in numeric order, use a\nnumerical for loop or `ipairs`.\n\nThe behavior of next is undefined if, during the traversal, you assign any\nvalue to a non-existent field in the table. You may, however, modify\nexisting fields. In particular, you may clear existing fields.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The array to be traversed.\n"
+          },
+          {
+            "name": "lastKey",
+            "type": "Variant",
+            "default": "nil",
+            "summary": "The last key that was previously retrieved from a call to next.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          },
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "pairs",
+        "summary": "Returns an iterator function and the provided table for use in a `for`\nloop.\n",
+        "description": "Returns an iterator function, the passed table `t`, and `nil`, so that the\nconstruction will iterate over all key/value pairs of that table when used\nin a generic `for` loop:\n\n```lua\nlocal scores = {\n    [\"John\"] = 5,\n    [\"Sally\"] = 10\n}\n\nfor name, score in pairs(scores) do\n    print(name .. \" has score: \" .. score)\nend\n```\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "An array or dictionary table to iterate over.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          },
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "pcall",
+        "summary": "Runs the provided function and catches any error it throws, returning the\nfunction's success and its results.\n",
+        "description": "Calls the function `func` with the given arguments in protected mode. This\nmeans that any error inside `func` is not propagated; instead, `pcall()`\ncatches the error and returns a status code. Its first result is the\nstatus code (a boolean), which is true if the call succeeds without\nerrors. In such case, `pcall()` also returns all results from the call,\nafter this first result. In case of any error, `pcall()` returns false\nplus the error message.\n\n```lua\nlocal function divideByFive(n: number): number\n\treturn n / 5\nend\n\nlocal success, errorMessage = pcall(divideByFive, \"notANumber\")  -- Results in error...\n\nif success then\n\t-- Handle successful response...\nelse\n\twarn(\"Error message:\", errorMessage)\nend\n```\n",
+        "parameters": [
+          {
+            "name": "func",
+            "type": "function",
+            "default": null,
+            "summary": "The function to be called in protected mode.\n"
+          },
+          {
+            "name": "args",
+            "type": "Tuple",
+            "default": null,
+            "summary": "The arguments to send to `func` when executing.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          },
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "print",
+        "summary": "Prints all provided values to the output.\n",
+        "description": "Receives any number of arguments, and prints their values to the output.\n`print` is not intended for formatted output, but only as a quick way to\nshow a value, typically for debugging. For a formatted output, use\n`Library.string.format()`. On Roblox, `print` does not call `tostring`,\nbut the `__tostring` metamethod still fires if the table has one.\n",
+        "parameters": [
+          {
+            "name": "params",
+            "type": "Tuple",
+            "default": null,
+            "summary": "Any number of arguments to be outputted.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "rawequal",
+        "summary": "Returns whether `v1` is equal to `v2`, bypassing their metamethods.\n",
+        "description": "Checks whether `v1` is equal to `v2`, without invoking any metamethods.\n",
+        "parameters": [
+          {
+            "name": "v1",
+            "type": "Variant",
+            "default": null,
+            "summary": "The first variable to compare.\n"
+          },
+          {
+            "name": "v2",
+            "type": "Variant",
+            "default": null,
+            "summary": "The second variable to compare.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "rawget",
+        "summary": "Gets the real value of `table[index]`, bypassing any metamethods.\n",
+        "description": "Gets the real value of `table[index]`, without invoking any metamethods.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be referenced.\n"
+          },
+          {
+            "name": "index",
+            "type": "Variant",
+            "default": null,
+            "summary": "The index to get from `t`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "rawlen",
+        "summary": "Returns the length of the string or table, bypassing any metamethods.\n",
+        "description": "Returns the length of the string or table, without invoking any\nmetamethods.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be referenced.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "rawset",
+        "summary": "Sets the real value of `table[index]`, bypassing any metamethods.\n",
+        "description": "Sets the real value of `table[index]` to a given `value`, without invoking\nany metamethod.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be referenced.\n"
+          },
+          {
+            "name": "index",
+            "type": "Variant",
+            "default": null,
+            "summary": "The index to set in `t` to a specified `value`. Must be different from\n`nil`.\n"
+          },
+          {
+            "name": "value",
+            "type": "Variant",
+            "default": null,
+            "summary": "The value to be set to a specified `index` in table `t`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "require",
+        "summary": "Returns the value that was returned by the given ModuleScript, running it\nif it has not been run yet.\n",
+        "description": "Runs the supplied `Class.ModuleScript` and returns what the\n`Class.ModuleScript` returned (usually a table or a function). If the\n`Class.ModuleScript` has not been run yet, it will be executed.\n\nIf a string path is provided instead, it is first resolved to a\n`Class.ModuleScript` relative to the script that called\n`Global.LuaGlobals.require()`, mimicking the Unix-like semantics of Luau's\n`require()` expression.\n\nSpecifically, require-by-string's resolution semantics are as follows:\n\n- Paths with the `./` prefix begin resolution at `script.Parent`.\n- Paths with the `../` prefix begin resolution at `script.Parent.Parent`.\n- Paths with the `@self/` prefix begin resolution at `script`.\n- Paths with the `@game/` prefix begin resolution at `game`.\n- Each non-prefix component in a given path corresponds to a child\n  instance of the previous component. The exception to this is the `..`\n  component, which corresponds to the parent of the previous component.\n- If the desired `Class.ModuleScript` is not present at the time that\n  `Global.LuaGlobals.require()` is called, the call will fail and throw an\n  error. In other words, require-by-string is non-blocking: it does not\n  implicitly wait for a `Class.ModuleScript` to be created.\n\nTo illustrate this, each pair of `Global.LuaGlobals.require()` expressions\nin the example below contains two functionally equivalent calls. Redundant\nparentheses have been added to clarify exactly how each path component\nmaps onto an instance.\n\n```lua\n-- \"./\" prefix is equivalent to script.Parent\nrequire(\"./MySibling\")\nrequire((script.Parent).(MySibling))\n\n-- \"../\" prefix is equivalent to script.Parent.Parent\nrequire(\"../SiblingOfMyParent\")\nrequire((script.Parent.Parent).(SiblingOfMyParent))\n\n-- \"../\" can be chained to go up multiple levels\nrequire(\"../../SiblingOfMyGrandparent\")\nrequire((script.Parent.Parent).(Parent).(SiblingOfMyGrandparent))\n\n-- \"@self\" prefix corresponds to the script itself\nrequire(\"@self/MyChild\")\nrequire((script).(MyChild))\n\n-- \"@game\" prefix corresponds to the DataModel root\nrequire(\"@game/ReplicatedStorage/Shared/MyModule\")\nrequire((game).(ReplicatedStorage).(Shared).(MyModule))\n```\n\nOnce the return object is created by an **initial**\n`Global.LuaGlobals.require()` call of a `Class.ModuleScript`, future\n`Global.LuaGlobals.require()` calls for the same `Class.ModuleScript` (on\nthe same side of the client-server boundary) will not run the code again.\nInstead, a reference to the **same** return object created by the initial\n`Global.LuaGlobals.require()` call will be supplied. This behavior allows\nfor the sharing of values across different scripts, as multiple\n`Global.LuaGlobals.require()` calls from different scripts will reference\nthe same returned object. If the returned object is a table, any values\nstored within the table are shared and accessible by any script requiring\nthat `Class.ModuleScript`.\n\nAs noted above, the \"object sharing\" behavior does not cross the\nclient-server boundary. This means that if a `Class.ModuleScript` is\naccessible to both the client **and** server (such as by being placed in\n`Class.ReplicatedStorage`) and `Global.LuaGlobals.require()` is called\nfrom both a `Class.LocalScript` as well as a `Class.Script`, the code in\nthe `Class.ModuleScript` will be run twice, and the `Class.LocalScript`\nwill receive a distinct return object from the one received by the\n`Class.Script`.\n\nAlso note that if the `Class.ModuleScript` the user wants to run has been\nuploaded to Roblox (with the instance's name being `MainModule`), it can\nbe loaded by using the `Global.LuaGlobals.require()` function on the asset\nID of the `Class.ModuleScript`, though only on the server.\n",
+        "parameters": [
+          {
+            "name": "module",
+            "type": "ModuleScript | string | number",
+            "default": null,
+            "summary": "The `Class.ModuleScript` that will be executed to retrieve the return\nvalue it provides, or a reference to one (a string path or asset ID).\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": "What the `Class.ModuleScript` returned (usually a table or a\nfunction).\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "select",
+        "summary": "Returns all arguments after the given index.\n",
+        "description": "Returns all arguments after argument number `index`. If negative, it will\nreturn from the end of the argument list.\n\n```lua\nprint(select(2, \"A\", \"B\", \"C\")) --> B C\nprint(select(-1, \"A\", \"B\", \"C\")) --> C\n```\n\nIf the `index` argument is set to `\"#\"`, the number of arguments that were\npassed after it is returned.\n\n```lua\nprint(select(\"#\", \"A\", \"B\", \"C\")) --> 3\n```\n",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "Variant",
+            "default": null,
+            "summary": "The index of the argument to return all arguments after in `args`. If\nit's set to `\"#\"`, the number of arguments that were passed after it\nis returned.\n"
+          },
+          {
+            "name": "args",
+            "type": "Tuple",
+            "default": null,
+            "summary": "A tuple of arguments.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "setfenv",
+        "summary": "Sets the given function's environment.\n",
+        "description": "Sets the environment to be used by the given function. `f` can be a\nfunction or a number that specifies the function at that stack level:\nLevel 1 is the function calling `setfenv()`. `setfenv()` returns the given\nfunction.\n\nIf `f` is `0`, then `setfenv()` changes the environment of the running\nthread and returns no values.\n\n**WARNING:** This function allows uncontrolled change of the\nglobal/function environment and disables script optimizations. Changes to\nthe environment are not tracked by the script analysis tooling and may\nresult in missing or incorrect warnings.\n",
+        "parameters": [
+          {
+            "name": "f",
+            "type": "Variant",
+            "default": null,
+            "summary": "Either a function or a number that specifies the function at that\nstack level.\n"
+          },
+          {
+            "name": "fenv",
+            "type": "table",
+            "default": null,
+            "summary": "The function environment table to set for the specified function.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "This function allows uncontrolled change of the global/function\nenvironment and disables script optimizations. Changes to the environment\nare not tracked by the script analysis tooling and may result in missing\nor incorrect warnings.\n"
+      },
+      {
+        "name": "setmetatable",
+        "summary": "Sets the given table's metatable.\n",
+        "description": "Sets the metatable for the given table `t` to `newMeta`. If `newMeta` is\n`nil`, the metatable of `t` is removed. Finally, this function returns the\ntable `t` which was passed to it. If `t` already has a metatable whose\n`__metatable` metamethod is set, calling this on `t` raises an error.\n\n```lua\nlocal meta = {__metatable = \"protected\"}\nlocal t = {}\nsetmetatable(t, meta) -- This sets the metatable of t\n-- We now have a table, t, with a metatable. If we try to change it...\nsetmetatable(t, {}) --> Error: cannot change a protected metatable\n```\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to set the metatable of.\n"
+          },
+          {
+            "name": "newMeta",
+            "type": "Variant",
+            "default": null,
+            "summary": "If `nil`, the metatable of the given table `t` is removed. Otherwise,\nthe metatable to set for the given table `t`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "tonumber",
+        "summary": "Returns the provided value converted to a number, or `nil` if impossible.\n",
+        "description": "Attempts to convert the arg into a number with a specified base to\ninterpret the value in. If it cannot be converted, this function returns\n`nil`.\n\nThe base may be any integer between 2 and 36, inclusive. In bases above\n10, the letter 'A' (in either upper or lower case) represents 10, 'B'\nrepresents 11, and so forth, with 'Z' representing 35. In base 10 (the\ndefault), the number may have a decimal part, as well as an optional\nexponent part. In other bases, only unsigned integers are accepted.\n\nIf a string begins with `0x` and a base is not provided, the `0x` is\ntrimmed and the base is assumed to be 16, or hexadecimal.\n\n```lua\nprint(tonumber(\"1337\")) --> 1337 (assumes base 10, decimal)\nprint(tonumber(\"1.25\")) --> 1.25 (base 10 may have decimal portions)\nprint(tonumber(\"3e2\")) --> 300 (base 10 may have exponent portion, 3 &times; 10 ^ 2)\nprint(tonumber(\"25\", 8)) --> 21 (base 8, octal)\nprint(tonumber(\"0x100\")) --> 256 (assumes base 16, hexadecimal)\nprint(tonumber(\"roblox\")) --> nil (does not raise an error)\n-- Tip: use with assert if you would like unconvertable numbers to raise an error\nprint(assert(tonumber(\"roblox\"))) --> Error: assertion failed\n```\n",
+        "parameters": [
+          {
+            "name": "arg",
+            "type": "Variant",
+            "default": null,
+            "summary": "The object to be converted into a number.\n"
+          },
+          {
+            "name": "base",
+            "type": "int",
+            "default": 10,
+            "summary": "The numerical base to convert `arg` into.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "tostring",
+        "summary": "Returns the provided value converted to a string, or `nil` if impossible.\n",
+        "description": "Receives an argument of any type and converts it to a string in a\nreasonable format. For complete control of how numbers are converted, use\nstring.format. If the metatable of `e` has a `__tostring` metamethod, then\nit will be called with `e` as the only argument and will return the\nresult.\n\n```lua\nlocal isRobloxCool = true\n-- Convert the boolean to a string then concatenate:\nprint(\"Roblox is cool: \" .. tostring(isRobloxCool)) --> Roblox is cool: true\n```\n",
+        "parameters": [
+          {
+            "name": "e",
+            "type": "Variant",
+            "default": null,
+            "summary": "The object to be converted into a string.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "type",
+        "summary": "Returns the basic type of the provided object.\n",
+        "description": "Returns the type of its only argument, coded as a string. The possible\nresults of this function are `\"nil\"` (a string, not the value nil),\n`\"number\"`, `\"string\"`, `\"boolean\"`, `\"table\"`, `\"vector\"`, `\"function\"`,\n`\"thread\"`, `\"userdata\"`, and `\"buffer\"`. The `buffer` and `vector`\nprimitives are additions from Luau, not from Lua.\n",
+        "parameters": [
+          {
+            "name": "v",
+            "type": "Variant",
+            "default": null,
+            "summary": "The object to return the type of.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "unpack",
+        "summary": "Returns all elements from the given list as a tuple.\n",
+        "description": "Returns the elements from the given table. By default, `i` is 1 and `j` is\nthe length of `list`, as defined by the length operator.\n",
+        "parameters": [
+          {
+            "name": "list",
+            "type": "table",
+            "default": null,
+            "summary": "The list of elements to be unpacked.\n"
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": "The index of the first element to unpack.\n"
+          },
+          {
+            "name": "j",
+            "type": "int",
+            "default": "#list",
+            "summary": "The index of the last element to unpack.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "xpcall",
+        "summary": "Similar to `Global.LuaGlobals.pcall()` except it uses a custom error\nhandler.\n",
+        "description": "This function is similar to `Global.LuaGlobals.pcall()`, except that you\ncan set a new error handler.\n\n`xpcall()` calls function `f` in protected mode, using `err` as the error\nhandler, and passes a list of arguments. Any error inside `f` is not\npropagated; instead, `xpcall()` catches the error, calls the `err`\nfunction with the original error object, and returns a status code. Its\nfirst result is the status code (a boolean), which is true if the call\nsucceeds without errors. In this case, `xpcall()` also returns all results\nfrom the call, after this first result. In case of any error, `xpcall()`\nreturns false plus the result from `err`.\n\nUnlike `Global.LuaGlobals.pcall()`, the `err` function preserves the stack\ntrace of function `f`, which can be inspected using `Library.debug.info()`\nor `Library.debug.traceback()`.\n",
+        "parameters": [
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": "The function to be called in protected mode.\n"
+          },
+          {
+            "name": "err",
+            "type": "function",
+            "default": null,
+            "summary": "The function to be used as an error handle if xpcall catches an error.\n"
+          },
+          {
+            "name": "args",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          },
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "RobloxGlobals": {
+    "name": "Roblox globals",
+    "type": "global",
+    "summary": "Built-in functions and constants unique to Roblox.\n",
+    "description": "Roblox provides several unique built-in functions and variables in its\nembedding of Luau. These are only found on Roblox and are not packaged by\ndefault with Luau or Lua.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [
+      {
+        "name": "Enum",
+        "type": "Enums",
+        "summary": "Contains all Enum objects.\n",
+        "description": "A reference to the Enums data type, which stores all of the available\nenums that can be used on Roblox.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "game",
+        "type": "DataModel",
+        "summary": "Refers to the DataModel singleton, the root instance of a place's\nhierarchy.\n",
+        "description": "A reference to the `Class.DataModel`, which is the root Instance of\nRoblox's parent/child hierarchy.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "plugin",
+        "type": "Plugin",
+        "summary": "Refers to a Plugin singleton when the code is run in the context of a\nStudio plugin.\n",
+        "description": "A reference to the `Class.Plugin` object that represents the plugin being\nrun from this `Class.Script`. This reference exists only in the context\nwhere a script is executed as a plugin and is not passed to\n`Class.ModuleScript|ModuleScripts` within the plugin. To use this\nreference in a `Class.ModuleScript`, you must explicitly pass it.\n\n```lua\nassert(plugin, \"This script must be run as a plugin!\")\n-- Code beyond this point will execute only if the script is run as a plugin\n```\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "shared",
+        "type": "Array",
+        "summary": "A table shared between all code running at the same execution context\nlevel.\n",
+        "description": "A table that is shared across all scripts that share the same execution\ncontext level. This serves the exact same purpose as `_G`.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "script",
+        "type": "LuaSourceContainer",
+        "summary": "A reference to the LuaSourceContainer object (Script, LocalScript, or\nModuleScript) that is executing this code.\n",
+        "description": "A reference to the script object that is executing the code you are\nwriting. It can be either a `Class.Script`, a `Class.LocalScript`, or a\n`Class.ModuleScript`. This variable is not available when executing code\nfrom Roblox Studio's command bar.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "workspace",
+        "type": "Workspace",
+        "summary": "A reference to the Workspace service, which contains all of the physical\ncomponents of a place.\n",
+        "description": "A reference to the `Class.Workspace` service, which contains all of the\nphysical components of a Roblox world.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ],
+    "functions": [
+      {
+        "name": "delay",
+        "summary": "Schedules a function to be called on the next Heartbeat after the given\nduration (in seconds) has passed, with throttling.\n",
+        "description": "Schedules a function to be executed after `delayTime` seconds have passed,\nwithout yielding the current thread. This function allows multiple Luau\nthreads to be executed in parallel from the same stack. The delay will\nhave a minimum duration of 29 milliseconds, but this minimum may be higher\ndepending on the target framerate and various throttling conditions. If\nthe `delayTime` parameter is not specified, the minimum duration will be\nused.\n",
+        "parameters": [
+          {
+            "name": "delayTime",
+            "type": "number",
+            "default": null,
+            "summary": "The amount of time that this function will be queued before being\nexecuted.\n"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "default": null,
+            "summary": "The function that will be executed once `delayTime` seconds have\npassed.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "This method has been superseded by `Library.task.delay()` and should not\nbe used for future work.\n"
+      },
+      {
+        "name": "DebuggerManager",
+        "summary": "Refers to the legacy `DebuggerManager` class which acts as an interface\nfor the Luau debugger feature.\n",
+        "description": "Returns the legacy `DebuggerManager` class which acts as an interface for\nRoblox's Luau debugger feature.\n\nThis function is not recognized by Luau's analysis tool and will raise an\nundefined global warning.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "DebuggerManager",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "The `DebuggerManager` is obsolete and serves little to no use case for\ndevelopers.\n"
+      },
+      {
+        "name": "elapsedTime",
+        "summary": "Returns the amount of time in seconds that the current instance of Roblox\nhas been running for.\n",
+        "description": "Returns how much time has elapsed since the current instance of Roblox was\nstarted. In Roblox Studio, this begins counting up from the moment Roblox\nStudio starts running, not just when opening a place.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "PluginManager",
+        "summary": "Refers to the `Class.PluginManager`, a deprecated singleton that was\npreviously required to create plugins.\n",
+        "description": "Returns the `Class.PluginManager` which is a deprecated singleton that was\npreviously required to create plugins. It still has some applicable uses,\nsuch as if you need to create a `Class.Plugin` object from Studio's\n[Command Bar](../../../studio/ui-overview.md#command-bar).\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "PluginManager",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "printidentity",
+        "summary": "Prints \"Current identity is X\", where X corresponds to the current\nthread's security context level.\n",
+        "description": "Prints `Current identity is [ID]` to the output, where [ID] corresponds to\nthe current thread's security context level.\n",
+        "parameters": [
+          {
+            "name": "prefix",
+            "type": "string",
+            "default": "Current identity is",
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "settings",
+        "summary": "Returns the `Class.GlobalSettings` object, which can be used to access\nsettings objects that configure Roblox Studio's behavior.\n",
+        "description": "Returns the `Class.GlobalSettings` object, which can be used to access the\nsettings objects that are used in Roblox Studio's settings menu.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "GlobalSettings",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "spawn",
+        "summary": "Calls a function immediately through the engine scheduler, with\nthrottling.\n",
+        "description": "Runs the specified callback function in a separate thread, without\nyielding the current thread.\n\nThe function will be executed the next time Roblox's Task Scheduler runs\nan update cycle. This delay will take at least 29 milliseconds but can\narbitrarily take longer, depending on the target framerate and various\nthrottling conditions.\n\nThe callback function is invoked with two arguments:\n\n1. The first being the amount of time which elapsed from when spawn was\n   called to when the function was invoked.\n2. The second being equivalent to elapsedTime() or roughly how long the\n   engine has been running.\n\n```lua\nspawn(print) -- 0.0079617658390703 451.55683163643\n```\n",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "function",
+            "default": null,
+            "summary": "The function that will be executed.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "This method has been superseded by `Library.task.spawn()` and should not\nbe used for future work.\n"
+      },
+      {
+        "name": "stats",
+        "summary": "Returns the Stats service.\n",
+        "description": "Returns the `Class.Stats` service. It is preferred that developers use\n`Class.ServiceProvider:GetService()` to retrieve it instead.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "Stats",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "tick",
+        "summary": "Returns the amount of time in seconds since the Unix epoch according to\nthis device's time.\n",
+        "description": "Returns how much time has elapsed, in seconds, since the Unix epoch, on\nthe current local session's computer. The Unix epoch is represented by\n00:00:00 on 1 January 1970.\n\n`tick()` isn't officially deprecated, but has a variety of issues. It can\nbe off by up to one second and returns inconsistent results across time\nzones and operating systems. Use `Library.os.time()`,\n`Library.os.clock()`, or `Global.RobloxGlobals.time()` instead. Also\nconsider `Datatype.DateTime.UnixTimestamp` and\n`Datatype.DateTime.UnixTimestampMillis`.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "time",
+        "summary": "Returns the amount of time in seconds that has elapsed since the current\ngame instance started running.\n",
+        "description": "Returns the amount of time, in seconds, that has elapsed since the current\ngame instance started running. If the current game instance is not\nrunning, this will be `0`.\n\nIf `Class.Workspace.AuthorityMode` is `Enum.AuthorityMode.Server`, this\nvalue is synchronized between client and server.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "typeof",
+        "summary": "Returns the type of the given object as a string, also supporting\nRoblox-specific types (e.g. Vector3).\n",
+        "description": "Returns the type of the object specified, as a string. This function is\nmore accurate than Luau's native `type` function, as it does not denote\nRoblox-specific types as `userdata`.\n",
+        "parameters": [
+          {
+            "name": "object",
+            "type": "Variant",
+            "default": null,
+            "summary": "The Luau type that will have its type checked.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "UserSettings",
+        "summary": "Returns the UserSettings object, which is used to read information from\nthe current user's game menu settings.\n",
+        "description": "Returns the `Class.UserSettings` object, which is used to read information\nfrom the current user's game menu settings.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "UserSettings",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "version",
+        "summary": "Returns the current version of Roblox as a string, which includes the\ngeneration, version, patch and commit.\n",
+        "description": "Returns the current version of Roblox as a string. The integers in the\nversion string are separated by periods, and each integers represent the\nfollowing, in order:\n\n- Generation - The current generation of the application shell that is\n  hosting the client.\n- Version - The current release version of Roblox.\n- Patch - The current patch number for this version of Roblox.\n- Commit - The ID of the last internal commit that was accepted into this\n  version of the client.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "wait",
+        "summary": "Yields the current thread until the specified amount of time in seconds\nhave elapsed, with throttling.\n",
+        "description": "Yields the current thread until the specified amount of seconds have\nelapsed.\n\nThe delay will have a minimum duration of 29 milliseconds, but this\nminimum may be higher depending on the target framerate and various\nthrottling conditions. If the `seconds` parameter is not specified, the\nminimum duration will be used. This function returns:\n\n- Actual time yielded (in seconds).\n- Total time since the software was initialized (in seconds).\n",
+        "parameters": [
+          {
+            "name": "seconds",
+            "type": "number",
+            "default": 0.03,
+            "summary": "Specifies how long the thread should yield for.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          },
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": "This method has been superseded by `Library.task.wait()` and should not be\nused for future work.\n"
+      },
+      {
+        "name": "warn",
+        "summary": "Behaves similarly to print, except with more distinct formatting (yellow);\nintended for messages which describe potential problems.\n",
+        "description": "Behaves identically to Luau's print function, except the output is styled\nas a warning, with yellow text and a timestamp. This function accepts any\nnumber of arguments, and will attempt to convert them into strings which\nwill then be joined together with spaces between them.\n",
+        "parameters": [
+          {
+            "name": "params",
+            "type": "Tuple",
+            "default": null,
+            "summary": "This function accepts any number of arguments, and will attempt to\nconvert them into strings which will then be joined together with\nspaces between them.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "ypcall",
+        "summary": "Legacy function to work around an old task scheduling limitation of\n`Global.LuaGlobals.pcall()`.\n",
+        "description": "Legacy function to work around an old task scheduling limitation of\n`Global.LuaGlobals.pcall()`; should not be used for new work (use\n`Global.LuaGlobals.pcall()` instead).\n",
+        "parameters": [
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": "The function to be called in protected mode.\n"
+          },
+          {
+            "name": "args",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          },
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  }
+}

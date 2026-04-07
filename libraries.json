@@ -1,0 +1,4655 @@
+{
+  "bit32": {
+    "name": "bit32",
+    "type": "library",
+    "summary": "A library of functions to perform bitwise operations.\n",
+    "description": "This library provides functions to perform bitwise operations.\n\n#### Number Limitations\n\nThis library treats numbers as unsigned 32-bit integers; numbers will be\nconverted to this before being used (see image below). Numbers with decimal\nnumbers are rounded to the nearest whole number.\n\n<img src=\"../../../assets/engine-api/libraries/bit32/32-Bit-Restriction.png\" width=\"500\" alt=\"32-bit integer conversion (in hexadecimal)\" />\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "bit32.arshift",
+        "summary": "Returns a number after its bits have been arithmetically shifted to the\nright by a given displacement.\n",
+        "description": "Returns the number `x` shifted `disp` bits to the right. The number `disp`\nmay be any representable integer. Negative displacements shift to the\nleft.\n\nThis shift operation is what is called arithmetic shift. Vacant bits on\nthe left are filled with copies of the higher bit of `x`; vacant bits on\nthe right are filled with zeros. In particular, displacements with\nabsolute values higher than 31 result in zero or 0xFFFFFFFF (all original\nbits are shifted out).\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": "The number whose bits shall be shifted.\n"
+          },
+          {
+            "name": "disp",
+            "type": "number",
+            "default": null,
+            "summary": "The integer number of bits to shift by.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.band",
+        "summary": "Returns the bitwise AND of all provided numbers.\n",
+        "description": "Returns the bitwise AND of all provided numbers.\n\nEach bit is tested against the following truth table:\n\n<table>\n  <thead>\n    <tr>\n      <th>A</th>\n      <th>B</th>\n      <th>Output</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>1</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>1</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n\n<img src=\"../../../assets/engine-api/libraries/bit32/AND.png\" width=\"500\" alt=\"Bitwise AND of 3 numbers\" />\n",
+        "parameters": [
+          {
+            "name": "numbers",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.bnot",
+        "summary": "Returns the bitwise negation of a given number.\n",
+        "description": "Returns the bitwise negation of `x`.\n\n<img src=\"../../../assets/engine-api/libraries/bit32/NOT.png\" width=\"500\" alt=\"Negation of a provided number\" />\n\nFor any integer `x`, the following identity holds:\n\n```lua\nassert(bit32.bnot(x) == (-1 - x) % 2^32)\n```\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.bor",
+        "summary": "Returns the bitwise OR of all provided numbers.\n",
+        "description": "Returns the bitwise OR of all provided numbers.\n\nEach bit is tested against the following truth table:\n\n<table>\n  <thead>\n    <tr>\n      <th>A</th>\n      <th>B</th>\n      <th>Output</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>0</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>1</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>1</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n\n<img src=\"../../../assets/engine-api/libraries/bit32/OR.png\" width=\"500\" alt=\"Bitwise OR of 3 numbers\" />\n",
+        "parameters": [
+          {
+            "name": "numbers",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.btest",
+        "summary": "Returns a boolean describing whether the bitwise and of its operands is\ndifferent from zero.\n",
+        "description": "Returns a boolean signalling whether the bitwise _and_ of its operands is\ndifferent from zero.\n",
+        "parameters": [
+          {
+            "name": "numbers",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.bxor",
+        "summary": "Returns the bitwise XOR of all provided numbers.\n",
+        "description": "Returns the bitwise XOR of all provided numbers.\n\nEach bit is tested against the following truth table:\n\n<table>\n  <thead>\n    <tr>\n      <th>A</th>\n      <th>B</th>\n      <th>Output</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>0</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>1</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <td>1</td>\n      <td>1</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>\n\n<img src=\"../../../assets/engine-api/libraries/bit32/XOR.png\" width=\"580\" alt=\"Bitwise XOR of 3 numbers\" />\n",
+        "parameters": [
+          {
+            "name": "numbers",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.byteswap",
+        "summary": "Returns the given number with the order of the bytes swapped.\n",
+        "description": "Returns the given number with the order of the bytes swapped.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.countlz",
+        "summary": "Returns the number of consecutive zero bits in the 32-bit representation\nof the provided number starting from the left-most (most significant) bit.\n",
+        "description": "Returns the number of consecutive zero bits in the 32-bit representation\nof the provided number starting from the left-most (most significant) bit.\nReturns 32 if the provided number is zero.\n",
+        "parameters": [
+          {
+            "name": "n",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.countrz",
+        "summary": "Returns the number of consecutive zero bits in the 32-bit representation\nof the provided number starting from the right-most (least significant)\nbit.\n",
+        "description": "Returns the number of consecutive zero bits in the 32-bit representation\nof the provided number starting from the right-most (least significant)\nbit. Returns 32 if the provided number is zero.\n",
+        "parameters": [
+          {
+            "name": "n",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.extract",
+        "summary": "Extract a range of bits from a number and return them as an unsigned\nnumber.\n",
+        "description": "Returns the unsigned number formed by the bits `field` to\n`field + width - 1` from `n`. Bits are numbered from 0 (least significant)\nto 31 (most significant). All accessed bits must be in the range [0, 31].\nThe default for `width` is 1.\n",
+        "parameters": [
+          {
+            "name": "n",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "field",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "width",
+            "type": "number",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.replace",
+        "summary": "Return a copy of a number with a range of bits replaced by a given value.\n",
+        "description": "Returns a copy of `n` with the bits `field` to `field + width - 1`\nreplaced by the value `v`. See `Library.bit32.extract()` for details about\n`field` and `width`.\n",
+        "parameters": [
+          {
+            "name": "n",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "v",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "field",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "width",
+            "type": "number",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.lrotate",
+        "summary": "Returns a number after its bits have been rotated to the left by a given\nnumber of times.\n",
+        "description": "Returns the number `x` rotated `disp` bits to the left. The number `disp`\nmay be any representable integer. For any valid displacement, the\nfollowing identity holds:\n\n```lua\nassert(bit32.lrotate(x, disp) == bit32.lrotate(x, disp % 32))\n```\n\nIn particular, negative displacements rotate to the right.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "disp",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.lshift",
+        "summary": "Returns a number whose bits have been logically shifted to the left by a\ngiven displacement.\n",
+        "description": "Returns the number `x` shifted `disp` bits to the left. The number `disp`\nmay be any representable integer. Negative displacements shift to the\nright. In any direction, vacant bits are filled with zeros. In particular,\ndisplacements with absolute values higher than 31 result in zero (all bits\nare shifted out).\n\n<img src=\"../../../assets/engine-api/libraries/bit32/LSHIFT.png\" width=\"500\" alt=\"Number shifted 3 to the left\" />\n\nFor positive displacements, the following equality holds:\n\n```lua\nassert(bit32.lshift(b, disp) == (b * 2^disp) % 2^32)\n```\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "disp",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.rrotate",
+        "summary": "Returns a number after its bits have been rotated to the right by a given\nnumber of times.\n",
+        "description": "Returns the number `x` rotated `disp` bits to the right. The number `disp`\nmay be any representable integer.\n\nFor any valid displacement, the following identity holds:\n\n```lua\nassert(bit32.rrotate(x, disp) == bit32.rrotate(x , disp % 32))\n```\n\nIn particular, negative displacements rotate to the left.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "disp",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "bit32.rshift",
+        "summary": "Returns a number whose bits have been logically shifted to the right by a\ngiven displacement.\n",
+        "description": "Returns the number `x` shifted `disp` bits to the right. The number `disp`\nmay be any representable integer. Negative displacements shift to the\nleft. In any direction, vacant bits are filled with zeros. In particular,\ndisplacements with absolute values higher than 31 result in zero (all bits\nare shifted out).\n\n<img src=\"../../../assets/engine-api/libraries/bit32/RSHIFT.png\" width=\"500\" alt=\"Number shifted 3 to the right\" />\n\nFor positive displacements, the following equality holds:\n\n```lua\nassert(bit32.rshift(b, disp) == (b % 2^32 / 2^disp) // 1)\n```\n\nThis shift operation is what is called logical shift.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "disp",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "buffer": {
+    "name": "buffer",
+    "type": "library",
+    "summary": "A library of buffer functions.\n",
+    "description": "A buffer is an object that represents a fixed-size mutable block of memory.\nThe buffer library provides functions for creation and manipulation of buffer\nobjects, providing all its functions inside the global `Library.buffer`\nvariable.\n\nBuffer is intended to be used a low-level binary data storage structure,\nreplacing the uses of `Library.string.pack()` and `Library.string.unpack()`.\nUse cases include reading and writing existing binary formats, working with\ndata in a more compact form, serialization to custom binary formats, and\ngeneral work with native memory types like fixed-length integers and floats.\n\nWhen passed through Roblox APIs, including sending a buffer through custom\nevents, the identity of the buffer object is not preserved and the target will\nreceive a copy. Similar to other limitations, the same buffer object cannot be\nused from multiple `Class.Actor` scripts (Parallel Luau).\n\nMany of the functions accept an offset in bytes from the start of the buffer.\nOffset of `0` from the start of the buffer memory block accesses the first\nbyte. All offsets, counts and sizes should be non-negative integer numbers. If\nthe bytes that are accessed by any read or write operation are outside the\nbuffer memory, an error is thrown.\n\nThe `read` and `write` methods that work with integers and floats use\n[little-endian](https://en.wikipedia.org/wiki/Endianness) encoding.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "buffer.create",
+        "summary": "Creates a buffer.\n",
+        "description": "Creates a buffer of the requested size with all bytes initialized to `0`.\nSize limit is 1 GiB, or 1,073,741,824 bytes. Keep in mind that larger\nbuffers might fail to allocate if device is running low on memory.\n",
+        "parameters": [
+          {
+            "name": "size",
+            "type": "number",
+            "default": null,
+            "summary": "Size of the buffer in bytes. Must be a positive integer.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "buffer",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.fromstring",
+        "summary": "Creates a buffer from a string.\n",
+        "description": "Creates a buffer initialized to the contents of the string. The size of\nthe buffer equals the length of the string.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "buffer",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.tostring",
+        "summary": "Converts a buffer to a string.\n",
+        "description": "Returns the buffer data as a string.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.len",
+        "summary": "Returns the size of the buffer in bytes.\n",
+        "description": "Returns the size of the buffer in bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readbits",
+        "summary": "Reads a range of bits into an unsigned integer from the buffer based on a\nspecific `bitCount` integer from `0` to `32`, inclusive.\n",
+        "description": "Reads a range of bits into an unsigned integer from the buffer based on a\nspecific `bitCount` integer from `0` to `32`, inclusive. For example:\n\n- `buffer.readbits(b, 0, 8)` is equivalent to\n  `Library.buffer.readu8(b, 0)`.\n- `buffer.readbits(b, 0, 16)` is equivalent to\n  `Library.buffer.readu16(b, 0)`.\n- `buffer.readbits(b, 0, 32)` is equivalent to\n  `Library.buffer.readu32(b, 0)`.\n- `buffer.readbits(b, 0, 24)` reads 24 bits from the buffer.\n\nNote that `0` bit width is supported only to not error in generalized\ncases where bit count is dynamic, and reading 0 bits returns `0`. Also\nnote that, since the max size of the buffer is 1&nbsp;GB, `bitOffset`\ncannot be handled as a 32\u2011bit integer number like byte offset in other\nbuffer functions.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "bitOffset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "bitCount",
+            "type": "number",
+            "default": null,
+            "summary": "Integer bit count to read. Error is thrown if this value is not in\nrange of `0` to `32`, inclusive.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readi8",
+        "summary": "Reads an 8-bit signed integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as an\n8-bit signed integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readu8",
+        "summary": "Reads an 8-bit unsigned integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as an\n8-bit unsigned integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readi16",
+        "summary": "Reads a 16-bit signed integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n16-bit signed integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readu16",
+        "summary": "Reads a 16-bit unsigned integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n16-bit unsigned integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readi32",
+        "summary": "Reads a 32-bit signed integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n32-bit signed integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readu32",
+        "summary": "Reads a 32-bit unsigned integer from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n32-bit unsigned integer and converting it into a number.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readf32",
+        "summary": "Reads a 32-bit floating-point value from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n32-bit floating-point value and converting it into a number. If the\nfloating-point value matches any bit patterns that represent `NaN` (not a\nnumber), the returned value may be converted to a different quiet `NaN`\nrepresentation.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readf64",
+        "summary": "Reads a 64-bit floating-point value from the buffer.\n",
+        "description": "Reads the data from the buffer by reinterpreting bytes at the offset as a\n64-bit floating-point value and converting it into a number. If the\nfloating-point value matches any bit patterns that represent `NaN` (not a\nnumber), the returned value may be converted to a different quiet `NaN`\nrepresentation.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writebits",
+        "summary": "Writes data to the buffer based on a specific `bitCount` integer from `0`\nto `32`, inclusive.\n",
+        "description": "Writes data to the buffer based on a specific `bitCount` integer from `0`\nto `32`, inclusive. `value` is treated as an unsigned 32\u2011bit number and\nonly `bitCount` least significant bits are written.\n\nNote that `0` bit width is supported only to not error in generalized\ncases where bit count is dynamic, and writing 0 bits has no effect. Also\nnote that, since the max size of the buffer is 1&nbsp;GB, `bitOffset`\ncannot be handled as a 32\u2011bit integer number like byte offset in other\nbuffer functions.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "bitOffset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "bitCount",
+            "type": "number",
+            "default": null,
+            "summary": "Integer bit count to write. Error is thrown if this value is not in\nrange of `0` to `32`, inclusive.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "Unsigned 32\u2011bit number. Only `bitCount` least significant bits are\nwritten.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writei8",
+        "summary": "Writes an 8-bit signed integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into an 8-bit signed\ninteger and writing a single byte.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [-128, 127].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writeu8",
+        "summary": "Writes an 8-bit unsigned integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into an 8-bit unsigned\ninteger and writing a single byte.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [0, 255].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writei16",
+        "summary": "Writes a 16-bit signed integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 16-bit signed\ninteger and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [-32,768, 32,767].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writeu16",
+        "summary": "Writes a 16-bit unsigned integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 16-bit unsigned\ninteger and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [0, 65,535].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writei32",
+        "summary": "Writes a 32-bit signed integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 32-bit signed\ninteger and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [-2,147,483,648, 2,147,483,647].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writeu32",
+        "summary": "Writes a 32-bit unsigned integer to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 32-bit unsigned\ninteger and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [0, 4,294,967,295].\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writef32",
+        "summary": "Writes a 32-bit floating-point value to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 32-bit\nfloating-point value and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "A single-precision floating-point number.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writef64",
+        "summary": "Writes a 64-bit floating-point value to the buffer.\n",
+        "description": "Writes data to the buffer by converting the number into a 64-bit\nfloating-point value and reinterpreting it as individual bytes.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "A double-precision floating-point number.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.readstring",
+        "summary": "Reads a string from the buffer.\n",
+        "description": "Reads a string of length `count` from the buffer at the specified\n`offset`.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "default": null,
+            "summary": "Length to read.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.writestring",
+        "summary": "Writes a string to the buffer.\n",
+        "description": "Writes data from a string into the buffer at the specified `offset`. If an\noptional `count` is specified, only `count` bytes are taken from the\nstring.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": null,
+            "summary": "Data to write.\n"
+          },
+          {
+            "name": "count",
+            "type": "number?",
+            "default": null,
+            "summary": "Number of bytes to take from the string. This value cannot be larger\nthan the string length.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.copy",
+        "summary": "Copies bytes between buffers.\n",
+        "description": "Copies `count` bytes from `source` starting at offset `sourceOffset` into\nthe `target` at `targetOffset`.\n\nIt's possible for `source` and `target` to be the same. Copying an\noverlapping region inside the same buffer acts as if the source region is\ncopied into a temporary buffer and then that buffer is copied over to the\ntarget.\n",
+        "parameters": [
+          {
+            "name": "target",
+            "type": "buffer",
+            "default": null,
+            "summary": "Buffer to copy data into.\n"
+          },
+          {
+            "name": "targetOffset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "source",
+            "type": "buffer",
+            "default": null,
+            "summary": "Buffer to take the data from.\n"
+          },
+          {
+            "name": "sourceOffset",
+            "type": "number?",
+            "default": 0,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "count",
+            "type": "number?",
+            "default": null,
+            "summary": "Number of bytes to copy. If omitted, the whole `source` data starting\nfrom `sourceOffset` is taken.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "buffer.fill",
+        "summary": "Sets a region of the buffer memory to some 8-bit unsigned integer value.\n",
+        "description": "Sets `count` bytes in the buffer starting at the specified `offset` to\n`value`.\n",
+        "parameters": [
+          {
+            "name": "b",
+            "type": "buffer",
+            "default": null,
+            "summary": "Buffer to write the data into.\n"
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": null,
+            "summary": "Offset from the beginning of the buffer memory, starting from `0`.\n"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": null,
+            "summary": "An integer number in range [0, 255].\n"
+          },
+          {
+            "name": "count",
+            "type": "number?",
+            "default": null,
+            "summary": "Number of bytes to write. If omitted, all bytes after the specified\noffset are set.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "coroutine": {
+    "name": "coroutine",
+    "type": "library",
+    "summary": "A function that executes alongside the main thread.\n",
+    "description": "A **coroutine** is used to perform multiple tasks at the same time from within\nthe same script. Such tasks might include producing values from inputs or\nperforming work on a subroutine when solving a larger problem. A task doesn't\neven need to have a defined ending point, but it does need to define\nparticular times at which it **yields** (pause) to let other things be worked\non.\n\n## Using Coroutines\n\nA new coroutine can be created by providing a function to\n`Library.coroutine.create()`. Once created, a coroutine doesn't begin running\nuntil the first call to `Library.coroutine.resume()` which passes the\narguments to the function. This call returns when the function either halts or\ncalls `Library.coroutine.yield()` and, when this happens,\n`Library.coroutine.resume()` returns either the values returned by the\nfunction, the values sent to `Library.coroutine.yield()`, or an error message.\nIf it does error, the second return value is the thrown error.\n\n```lua\nlocal function task(...)\n\t-- This function might do some work for a bit then yield some value\n\tcoroutine.yield(\"first\")  -- To be returned by coroutine.resume()\n\t-- The function continues once it is resumed again\n\treturn \"second\"\nend\n\nlocal taskCoro = coroutine.create(task)\n-- Call resume for the first time, which runs the function from the beginning\nlocal success, result = coroutine.resume(taskCoro, ...)\nprint(success, result)  --> true, first (task called coroutine.yield())\n-- Continue running the function until it yields or halts\nsuccess, result = coroutine.resume(taskCoro)\nprint(success, result)  --> true, second (task halted because it returned \"second\")\n```\n\nDuring the lifetime of the coroutine, you can call\n`Library.coroutine.status()` to inspect its status:\n\n<table>\n    <thead>\n        <tr>\n            <th>Status</th>\n            <th>Meaning</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td><b>suspended</b></td> <td>The coroutine is waiting to be\n            resumed. Coroutines begin in this state and enter it when their\n            function calls <code>coroutine.yield()</code>.</td>\n        </tr>\n        <tr>\n            <td><b>running</b></td>\n            <td>The coroutine is running right now.</td>\n        </tr>\n        <tr>\n            <td><b>normal</b></td> <td>The coroutine is awaiting the yield of\n            another coroutine; in other words, it has resumed another\n            coroutine.</td>\n        </tr>\n        <tr>\n            <td><b>dead</b></td> <td>The function has halted (returned or\n            thrown an&nbsp;error). The coroutine cannot be used further.</td>\n        </tr>\n    </tbody>\n</table>\n\n### Wrapping Coroutines\n\nWhen working with coroutines, you can also forgo the use of the coroutine\nobject and instead use a wrapper function. Such a wrapper function will resume\na particular coroutine when it is called and will return only the yielded\nvalues. You can do this using `Library.coroutine.wrap()`:\n\n```lua\n-- Create coroutine and return a wrapper function that resumes it\nlocal f = coroutine.wrap(task)\n-- Resume the coroutine as if we called coroutine.resume()\nlocal result = f()\n-- If an error occurs it will be raised here!\n-- This differs from coroutine.resume() which acts similar to pcall()\n```\n\nThe first value returned from `Library.coroutine.resume()` describes whether a\ncoroutine ran without errors. However, functions returned by\n`Library.coroutine.wrap()` will not do this: instead they directly return the\nvalues returned or passed to `Library.coroutine.yield()`, if any. Should an\nerror have occurred while running the coroutine function, the error is raised\non the call of the returned function.\n\n### Producer Pattern Example\n\nImagine a task that produces repetitions of a word: each time it produces a\nrepetition, the next one will produce one more. For example, providing `Hello`\nwill produce `Hello`, `HelloHello`, `HelloHelloHello`, etc. To do this, you\ncan define `repeatThis()`:\n\n```lua\n-- This function repeats a word every time its coroutine is resumed\nlocal function repeatThis(word)\n\tlocal repetition = \"\"\n\twhile true do\n\t\t-- Do one repetition then yield the result\n\t\trepetition = repetition .. word\n\t\tcoroutine.yield(repetition)\n\tend\nend\n```\n\nTo run this function as a coroutine, you can use `Library.coroutine.create()`\nfollowed by multiple calls to `Library.coroutine.resume()`:\n\n```lua\nlocal repetitionCoro = coroutine.create(repeatThis)\nprint(coroutine.resume(repetitionCoro, \"Hello\"))  -- true, Hello\nprint(coroutine.resume(repetitionCoro))           -- true, HelloHello\nprint(coroutine.resume(repetitionCoro))           -- true, HelloHelloHello\n```\n\nFor this producer function, you can also use `Library.coroutine.wrap()` to get\na function that produces values:\n\n```lua\nlocal f = coroutine.wrap(repeatThis)\nprint(f(\"Hello\"))  -- Hello\nprint(f())         -- HelloHello\nprint(f())         -- HelloHelloHello\n```\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "coroutine.close",
+        "summary": "Closes and puts the provided coroutine in a dead state.\n",
+        "description": "Closes and puts the provided coroutine in a dead state. This function\nreturns `true` unless the coroutine is in an error state, in which case it\nreturns `false` and the error message. A coroutine that is currently\nrunning cannot be closed. A coroutine cannot be resumed after it is\nclosed.\n",
+        "parameters": [
+          {
+            "name": "co",
+            "type": "thread",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": "`true` unless the coroutine being closed is in an error state.\n"
+          },
+          {
+            "type": "Variant<string, void>",
+            "summary": "The error message, if any.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.create",
+        "summary": "Creates a new coroutine, with body f. f must be a Luau function.\n",
+        "description": "Creates a new coroutine, with body f. f must be a Luau function.\n",
+        "parameters": [
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "thread",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.isyieldable",
+        "summary": "Returns `true` if the coroutine this function is called within can safely\nyield.\n",
+        "description": "Returns `true` if the coroutine this function is called within can safely\nyield. Yielding a coroutine inside metamethods or C functions is\nprohibited, with the exception of `pcall` and `xpcall`.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": "Whether or not the coroutine can safely yield at this point.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.resume",
+        "summary": "Starts or continues the execution of coroutine `co`.\n",
+        "description": "Starts or continues the execution of coroutine `co`. The first time you\nresume a coroutine, it starts running its body. The values `...` are\npassed as the arguments to the body function. If the coroutine has\nyielded, resume restarts it; the values `...` are passed as the results\nfrom the yield. If the coroutine runs without any errors, resume returns\ntrue plus any values passed to yield (if the coroutine yields) or any\nvalues returned by the body function (if the coroutine terminates). If\nthere is any error, resume returns false plus the error message.\n",
+        "parameters": [
+          {
+            "name": "co",
+            "type": "thread",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "Variant",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": ""
+          },
+          {
+            "type": "Variant<Tuple, string>",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.running",
+        "summary": "Returns the running coroutine.\n",
+        "description": "Returns the running coroutine.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "thread",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.status",
+        "summary": "Returns the status of coroutine co as a string.\n",
+        "description": "Returns the status of coroutine co, as a string: 'running', if the\ncoroutine is running (that is, it called status); 'suspended', if the\ncoroutine is suspended in a call to yield, or if it has not started\nrunning yet; 'normal' if the coroutine is active but not running (that is,\nit has resumed another coroutine); and 'dead' if the coroutine has\nfinished its body function, or if it has stopped with an error.\n",
+        "parameters": [
+          {
+            "name": "co",
+            "type": "thread",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.wrap",
+        "summary": "Creates a new coroutine and returns a function that, when called, resumes\nthe coroutine.\n",
+        "description": "Creates a new coroutine, with body f. f must be a Luau function. Returns a\nfunction that resumes the coroutine each time it is called. Any arguments\npassed to the function behave as the extra arguments to resume. Returns\nthe same values returned by resume, except the first boolean. In case of\nerror, propagates the error.\n",
+        "parameters": [
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "coroutine.yield",
+        "summary": "Suspends execution of the coroutine.\n",
+        "description": "Suspends the execution of the calling coroutine. Any arguments to yield\nare passed as extra results to resume. Yielding a coroutine inside\nmetamethods or C functions is prohibited, with the exception of `pcall`\nand `xpcall`.\n",
+        "parameters": [
+          {
+            "name": "...",
+            "type": "Tuple",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple<Variant>",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "debug": {
+    "name": "debug",
+    "type": "library",
+    "summary": "This library provides functions useful for debugging and profiling code.\n",
+    "description": "Provides a few basic functions for debugging code in Roblox. Unlike the\n`Library.debug` library found in Lua natively, this version has been heavily\nsandboxed.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "debug.traceback",
+        "summary": "Returns a string of undefined format that describes the current function\ncall stack.\n",
+        "description": "Returns a traceback of the current function call stack as a string; in\nother words, a description of the functions that have been called up to\nthis point. During debugging, this behaves like an error stack trace but\ndoes not stop execution of the script.\n\nThe `level` parameter specifies what level of the call stack to consider,\nwith `1` being the call of `Library.debug.traceback()` itself, `2` being\nthe call of the function calling `Library.debug.traceback()`, and so on.\nSee the code sample below for an example of sequential function calls.\n\nNote that this function will often return inaccurate results (compared to\nthe original source code) and that the format of the returned traceback\nmay change at any time. You should **not** parse the return value for\nspecific information such as script names or line numbers.\n\nThe following example includes sequential function calls; `fnB()` is\ncalled, and it calls `fnA()` which then calls `Library.debug.traceback()`.\n\n```lua\nlocal function fnA()\n\tprint(debug.traceback(\"Specific moment during fnA()\"))\nend\n\nlocal function fnB()\n\tfnA()\nend\n\n-- Call function fnB() to begin traceback\nfnB()\n```\n",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "default": "",
+            "summary": "The first line of the returned string.\n"
+          },
+          {
+            "name": "level",
+            "type": "number",
+            "default": 1,
+            "summary": "The number of calls \"up\" the call stack to return.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": "Traceback of the current function call stack.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.traceback",
+        "summary": "Returns a string of undefined format that describes the current function\ncall stack.\n",
+        "description": "Returns a traceback of the current function call stack as a string; in\nother words, a description of the functions that have been called up to\nthis point. During debugging, this behaves like an error stack trace but\ndoes not stop execution of the script.\n\nThe `level` parameter specifies what level of the call stack to consider,\nwith `1` being the call of `Library.debug.traceback()` itself, `2` being\nthe call of the function calling `Library.debug.traceback()`, and so on.\nSee the code sample below for an example of sequential function calls.\n\nNote that this function will often return inaccurate results (compared to\nthe original source code) and that the format of the returned traceback\nmay change at any time. You should **not** parse the return value for\nspecific information such as script names or line numbers.\n\nThe following example includes sequential function calls; `fnB()` is\ncalled, and it calls `fnA()` which then calls `Library.debug.traceback()`.\n\n```lua\nlocal function fnA()\n\tprint(debug.traceback(\"Specific moment during fnA()\"))\nend\n\nlocal function fnB()\n\tfnA()\nend\n\n-- Call function fnB() to begin traceback\nfnB()\n```\n",
+        "parameters": [
+          {
+            "name": "thread",
+            "type": "thread",
+            "default": null,
+            "summary": "A thread as returned by `Library.coroutine.create()`.\n"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "default": "",
+            "summary": "The first line of the returned string.\n"
+          },
+          {
+            "name": "level",
+            "type": "number",
+            "default": 1,
+            "summary": "The number of calls \"up\" the call stack to return.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": "Traceback of the current function call stack.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.info",
+        "summary": "Traverses the entire stack of current thread and returns a string\ncontaining the call stack of target level details.\n",
+        "description": "Allows programmatic inspection of the call stack. This function differs\nfrom `Library.debug.traceback()` in that it guarantees the format of the\ndata it returns. This is useful for general logging and filtering purposes\nas well as for sending the data to systems expecting structured input,\nsuch as crash aggregation.\n\n```lua\nlocal function fnA()\n\t-- Output source identifier (\"s\") and line (\"l\") at levels 1 and 2\n\tprint(debug.info(1, \"sl\"))  --> fnA() 3\n\tprint(debug.info(2, \"sl\"))  --> fnA() 7\nend\n\nfnA()\n```\n\nNote that this function is similar to\n[debug.getinfo](https://www.lua.org/pil/23.1.html), an unavailable part of\nthe standard Lua library which serves a similar purpose.\n",
+        "parameters": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": null,
+            "summary": "Determines at what level of the call stack the information returned\nshould describe. A value of `1` represents the function which is\ncalling `Library.debug.info()`, a value of `2` represents the function\nthat called that function, and so on.\n"
+          },
+          {
+            "name": "options",
+            "type": "string",
+            "default": null,
+            "summary": "A string that describes what the returned information should\nrepresent. It must only contain 0 or 1 instances of the characters\n`slnaf`, each representing a piece of information:\n\n- `s` ([string](/luau/strings.md)) \u2014 The function source identifier,\n  equal to the full name of the script the function is defined in.\n- `l` ([number](/luau/numbers.md)) \u2014 The line number of the function\n  call represented by `level`.\n- `n` ([string](/luau/strings.md)) \u2014 The name of the function; may be\n  `nil` for anonymous functions and C functions without an assigned\n  debug name.\n- `a` ([number](/luau/numbers.md), [boolean](/luau/booleans.md)) \u2014\n  Arity of the function, which refers to the parameter count and\n  whether the function is variadic.\n- `f` ([function](/luau/functions.md)) \u2014 The function which was\n  inspected.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.info",
+        "summary": "Traverses the entire stack of current thread and returns a string\ncontaining the call stack of target function details.\n",
+        "description": "Allows programmatic inspection of the call stack. This function differs\nfrom `Library.debug.traceback()` in that it guarantees the format of the\ndata it returns. This is useful for general logging and filtering purposes\nas well as for sending the data to systems expecting structured input,\nsuch as crash aggregation.\n\n```lua\nlocal function fnA()\n\nend\n\nlocal function fnB()\n\nend\n\n-- Output line (\"l\"), name (\"n\"), and identifier (\"f\") for both fnA() and fnB()\nprint(debug.info(fnA, \"lnf\"))  --> 1 fnA function: 0x75e3d3c398a81252\nprint(debug.info(fnB, \"lnf\"))  --> 5 fnB function: 0x6022a6dc5ccf4ab2\n```\n\nNote that this function is similar to\n[debug.getinfo](https://www.lua.org/pil/23.1.html), an unavailable part of\nthe standard Lua library which serves a similar purpose.\n",
+        "parameters": [
+          {
+            "name": "function",
+            "type": "function",
+            "default": null,
+            "summary": "The function of the call stack which the information returned should\ndescribe.\n"
+          },
+          {
+            "name": "options",
+            "type": "string",
+            "default": null,
+            "summary": "A string that describes what the returned information should\nrepresent. It must only contain 0 or 1 instances of the characters\n`slnaf`, each representing a piece of information:\n\n- `s` ([string](/luau/strings.md)) \u2014 The function source identifier,\n  equal to the full name of the script the function is defined in.\n- `l` ([number](/luau/numbers.md)) \u2014 The line that `function` is\n  defined on.\n- `n` ([string](/luau/strings.md)) \u2014 The name of the function; may be\n  `nil` for anonymous functions and C functions without an assigned\n  debug name.\n- `a` ([number](/luau/numbers.md), [boolean](/luau/booleans.md)) \u2014\n  Arity of the function, which refers to the parameter count and\n  whether the function is variadic.\n- `f` ([function](/luau/functions.md)) \u2014 The function which was\n  inspected.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.info",
+        "summary": "Traverses the entire stack of target thread and returns a string\ncontaining the call stack of target level details.\n",
+        "description": "Allows programmatic inspection of the call stack. This function differs\nfrom `Library.debug.traceback()` in that it guarantees the format of the\ndata it returns. This is useful for general logging and filtering purposes\nas well as for sending the data to systems expecting structured input,\nsuch as crash aggregation.\n\n```lua\nlocal function fnA()\n\t-- Output source identifier (\"s\") and line (\"l\") at levels 1 and 2\n\tprint(debug.info(1, \"sl\"))  --> fnA() 3\n\tprint(debug.info(2, \"sl\"))  --> fnA() 7\nend\n\nfnA()\n```\n\nNote that this function is similar to\n[debug.getinfo](https://www.lua.org/pil/23.1.html), an unavailable part of\nthe standard Lua library which serves a similar purpose.\n",
+        "parameters": [
+          {
+            "name": "thread",
+            "type": "thread",
+            "default": null,
+            "summary": "A thread as returned by `Library.coroutine.create()`.\n"
+          },
+          {
+            "name": "level",
+            "type": "number",
+            "default": null,
+            "summary": "Determines at what level of the call stack the information returned\nshould describe. A value of `1` represents the function which is\ncalling `Library.debug.info()`, a value of `2` represents the function\nthat called that function, and so on.\n"
+          },
+          {
+            "name": "options",
+            "type": "string",
+            "default": null,
+            "summary": "A string that describes what the returned information should\nrepresent. It must only contain 0 or 1 instances of the characters\n`slnaf`, each representing a piece of information:\n\n- `s` ([string](/luau/strings.md)) \u2014 The function source identifier,\n  equal to the full name of the script the function is defined in.\n- `l` ([number](/luau/numbers.md)) \u2014 The line number of the function\n  call represented by `level`.\n- `n` ([string](/luau/strings.md)) \u2014 The name of the function; may be\n  `nil` for anonymous functions and C functions without an assigned\n  debug name.\n- `a` ([number](/luau/numbers.md), [boolean](/luau/booleans.md)) \u2014\n  Arity of the function, which refers to the parameter count and\n  whether the function is variadic.\n- `f` ([function](/luau/functions.md)) \u2014 The function which was\n  inspected.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.profilebegin",
+        "summary": "Starts profiling for a label.\n",
+        "description": "Starts profiling for a\n[MicroProfiler](../../../studio/microprofiler/index.md) label.\n",
+        "parameters": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": null,
+            "summary": "The text that this\n[MicroProfiler](../../../studio/microprofiler/index.md) label\ndisplays.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.profileend",
+        "summary": "Stops profiling for the most recent label that\n`Library.debug.profilebegin()` opened.\n",
+        "description": "Stops profiling for the most recent\n[MicroProfiler](../../../studio/microprofiler/index.md) label that\n`Library.debug.profilebegin()` opened.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.getmemorycategory",
+        "summary": "Returns the name of the current thread's active memory category.\n",
+        "description": "Returns the name of the current thread's active memory category.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "string",
+            "summary": "The current thread's active memory category.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.setmemorycategory",
+        "summary": "Assigns a custom tag to the current thread's memory category.\n",
+        "description": "Assigns a custom tag name to the current thread's memory category in the\n[Developer Console](../../../studio/developer-console.md). Useful for\nanalyzing memory usage of multiple threads in the same script which would\notherwise be grouped together under the same tag/name. Returns the name of\nthe current thread's previous memory category.\n",
+        "parameters": [
+          {
+            "name": "tag",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": "The current thread's previous memory category.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.resetmemorycategory",
+        "summary": "Resets the tag assigned by `Library.debug.setmemorycategory()` to the\nautomatically assigned value (typically, the script name).\n",
+        "description": "Resets the tag assigned by `Library.debug.setmemorycategory()` to the\nautomatically assigned value (typically, the script name).\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "debug.dumpcodesize",
+        "summary": "Displays a table of native code size of individual functions and scripts.\n",
+        "description": "Displays a table of native code size of individual functions and scripts.\nThis function is only available in the Command Bar in Studio. More details\ncan be found on the\n[Native Code Generation](../../../luau/native-code-gen.md) page.\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "math": {
+    "name": "math",
+    "type": "library",
+    "summary": "A library of math functions.\n",
+    "description": "This library is an interface to the standard C math library, providing all of\nits functions inside the `Library.math` table.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [
+      {
+        "name": "math.e",
+        "type": "number",
+        "summary": "The value of Euler's number, e.\n",
+        "description": "The value of Euler's number, e.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.huge",
+        "type": "number",
+        "summary": "Returns a value larger than or equal to any other numerical value (about\n2<sup>1024</sup>).\n",
+        "description": "Returns a value larger than or equal to any other numerical value (about\n2<sup>1024</sup>). Dividing a positive number by zero yields this same\nvalue.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.nan",
+        "type": "number",
+        "summary": "A NaN value, as defined by the IEEE 754 standard.\n",
+        "description": "A NaN value, as defined by the IEEE 754 standard. Comparing directly to\n`math.nan` will always return false; use `Library.math.isnan()` instead.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.phi",
+        "type": "number",
+        "summary": "The value of the golden ratio.\n",
+        "description": "The value of the golden ratio.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.pi",
+        "type": "number",
+        "summary": "The value of pi.\n",
+        "description": "The value of pi.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.sqrt2",
+        "type": "number",
+        "summary": "The value of the square root of 2.\n",
+        "description": "The value of the square root of 2.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.tau",
+        "type": "number",
+        "summary": "The value of tau, which is defined as `2 * math.pi`.\n",
+        "description": "The value of tau, which is defined as `2 * math.pi`.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ],
+    "functions": [
+      {
+        "name": "math.abs",
+        "summary": "Returns the absolute value of `x`.\n",
+        "description": "Returns the absolute value of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.acos",
+        "summary": "Returns the arc cosine of `x`.\n",
+        "description": "Returns the arc cosine of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.asin",
+        "summary": "Returns the arc sine of `x`.\n",
+        "description": "Returns the arc sine of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.atan",
+        "summary": "Returns the arc tangent of `x` in radians.\n",
+        "description": "Returns the arc tangent of `x` in radians.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.atan2",
+        "summary": "Returns the arc tangent of `y`/`x` (in radians) while using the signs of\nboth parameters to find the quadrant of the result.\n",
+        "description": "Returns the arc tangent of `y`/`x` (in radians) while using the signs of\nboth parameters to find the quadrant of the result. It also handles\ncorrectly the case of `x` being zero.\n",
+        "parameters": [
+          {
+            "name": "y",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.ceil",
+        "summary": "Returns the smallest integer larger than or equal to `x`.\n",
+        "description": "Returns the smallest integer larger than or equal to `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.clamp",
+        "summary": "Returns a number between `min` and `max`, inclusive.\n",
+        "description": "Returns a number between `min` and `max`, inclusive.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "min",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.cos",
+        "summary": "Returns the cosine of `x`, assumed to be in radians.\n",
+        "description": "Returns the cosine of `x`, assumed to be in radians.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.cosh",
+        "summary": "Returns the hyperbolic cosine of `x`.\n",
+        "description": "Returns the hyperbolic cosine of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.deg",
+        "summary": "Returns the angle `x` (given in radians) in degrees.\n",
+        "description": "Returns the angle `x` (given in radians) in degrees.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.exp",
+        "summary": "Returns the value `e`^`x`.\n",
+        "description": "Returns the value `e`^`x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.floor",
+        "summary": "Returns the largest integer smaller than or equal to `x`.\n",
+        "description": "Returns the largest integer smaller than or equal to `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.fmod",
+        "summary": "Returns the remainder of the division of `x` by `y` that rounds the\nquotient towards zero.\n",
+        "description": "Returns the remainder of the division of `x` by `y` that rounds the\nquotient towards zero.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.frexp",
+        "summary": "Returns `m` and `e` such that `x` = `m`\\*`2`^`e`.\n",
+        "description": "Returns `m` and `e` such that `x` = `m`\\*`2`^`e`. `e` is an integer and\nthe absolute value of `m` is in the range of `0.5` to `1` (inclusive of\n`0.5` but exclusive of `1`), or zero when `x` is zero.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          },
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.isfinite",
+        "summary": "Returns true if `x` is a finite number.\n",
+        "description": "Returns true if `x` is a finite number, meaning it is neither NaN nor\npositive or negative infinity (\u00b1`Library.math.huge`).\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "boolean",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.isinf",
+        "summary": "Returns true if `x` is positive or negative infinity and false otherwise.\n",
+        "description": "Returns true if `x` is positive or negative infinity\n(\u00b1`Library.math.huge`) and false otherwise.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "boolean",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.isnan",
+        "summary": "Returns true if `x` is not a number (NaN) and false otherwise.\n",
+        "description": "Returns true if `x` is not a number (NaN) and false otherwise.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "boolean",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.ldexp",
+        "summary": "Returns `x`\\*`2`^`e` (`e` should be an integer).\n",
+        "description": "Returns `x`\\*`2`^`e` (`e` should be an integer).\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "e",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.lerp",
+        "summary": "Returns the linear interpolation between `a` and `b`.\n",
+        "description": "Returns the linear interpolation between `a` and `b` based on the factor\n`t`.\n\nThis function uses the formula `a`+`(b-a)`\\*`t`. `t` is typically between\n`0` and `1` but values outside this range are acceptable.\n",
+        "parameters": [
+          {
+            "name": "a",
+            "type": "number",
+            "default": null,
+            "summary": "The starting value.\n"
+          },
+          {
+            "name": "b",
+            "type": "number",
+            "default": null,
+            "summary": "The ending value.\n"
+          },
+          {
+            "name": "t",
+            "type": "number",
+            "default": null,
+            "summary": "The interpolation factor, typically between `0` and `1`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": "The interpolated value between `a` and `b`.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.log",
+        "summary": "Returns the logarithm of `x` using the given base.\n",
+        "description": "Returns the logarithm of `x` using the given base, or the mathematical\nconstant `e` if no base is provided (natural logarithm).\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "base",
+            "type": "number",
+            "default": 2.7182818,
+            "summary": "The base of the logarithm, the constant `e` by default.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.log10",
+        "summary": "Returns the base-10 logarithm of `x`.\n",
+        "description": "Returns the base-10 logarithm of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.map",
+        "summary": "Returns the value of `x` mapped from one range to another.\n",
+        "description": "Returns a value that represents `x` mapped linearly from the input range\n(`inmin` to `inmax`) to the output range (`outmin` to `outmax`). This is\nachieved by determining the relative position of `x` within the input\nrange and applying that ratio to the output range.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": "The number to be mapped.\n"
+          },
+          {
+            "name": "inmin",
+            "type": "number",
+            "default": null,
+            "summary": "The lower bound of the input range.\n"
+          },
+          {
+            "name": "inmax",
+            "type": "number",
+            "default": null,
+            "summary": "The upper bound of the input range.\n"
+          },
+          {
+            "name": "outmin",
+            "type": "number",
+            "default": null,
+            "summary": "The lower bound of the output range.\n"
+          },
+          {
+            "name": "outmax",
+            "type": "number",
+            "default": null,
+            "summary": "The upper bound of the output range.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": "The value of `x` mapped to the output range.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.max",
+        "summary": "Returns the maximum value among the numbers passed to the function.\n",
+        "description": "Returns the maximum value among the numbers passed to the function.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.min",
+        "summary": "Returns the minimum value among the numbers passed to the function.\n",
+        "description": "Returns the minimum value among the numbers passed to the function.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.modf",
+        "summary": "Returns two numbers: the integral part of `x` and the fractional part of\n`x`.\n",
+        "description": "Returns two numbers: the integral part of `x` and the fractional part of\n`x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          },
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.noise",
+        "summary": "Returns a Perlin noise value.\n",
+        "description": "Returns a Perlin noise value. The returned value is most often between the\nrange of `-1` to `1` (inclusive) but sometimes may be outside that range;\nif the interval is critical to you, use `Library.math.clamp(noise, -1, 1)`\non the output.\n\nIf you leave arguments out, they will be interpreted as zero, so\n`Library.math.noise(1.158)` is equivalent to\n`Library.math.noise(1.158, 0, 0)` and `Library.math.noise(1.158, 5.723)`\nis equivalent to `Library.math.noise(1.158, 5.723, 0)`.\n\nNote that this function uses a Perlin noise algorithm to assign fixed\nvalues to coordinates. For example, `Library.math.noise(1.158, 5.723)`\nwill always return `0.48397532105446` and `Library.math.noise(1.158, 6)`\nwill always return `0.15315161645412`.\n\nIf `x`, `y`, and `z` are all integers, the return value will be `0`. For\nfractional values of `x`, `y`, and `z`, the return value will gradually\nfluctuate between `-0.5` and `0.5`. For coordinates that are close to each\nother, the return values will also be close to each other.\n\nVery large `x`, `y`, and `z` inputs can cause a loss in precision that\nmakes this function frequently return 0. For time-based noise, use\n`Global.RobloxGlobals.time()` rather than `Global.RobloxGlobals.tick()`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "default": 0,
+            "summary": ""
+          },
+          {
+            "name": "z",
+            "type": "number",
+            "default": 0,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.pow",
+        "summary": "Returns `x`^`y`.\n",
+        "description": "Returns `x`^`y` (you can also use the expression `x`^`y` to compute this\nvalue).\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.rad",
+        "summary": "Returns the angle `x` (given in degrees) in radians.\n",
+        "description": "Returns the angle `x` (given in degrees) in radians.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.random",
+        "summary": "Returns a random number within the range provided.\n",
+        "description": "When called without arguments, returns a uniform pseudo-random real number\nin the range of `0` to `1` (inclusive of `0` but exclusive of `1`).\n\nWhen called with an integer number `m`, returns a uniform pseudo-random\ninteger in the range of `1` to `m`, inclusive.\n\nWhen called with two integer numbers `m` and `n`, returns a uniform\npseudo-random integer in the range of `m` to `n`, inclusive.\n\nInternally, this uses a 32-bit PCG (Permuted Congruential Generator) which\nachieves excellent statistical performance and makes its output hard to\npredict.\n",
+        "parameters": [
+          {
+            "name": "m",
+            "type": "number",
+            "default": 0,
+            "summary": ""
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.randomseed",
+        "summary": "Sets `x` as the seed for the pseudo-random generator.\n",
+        "description": "Sets `x` as the seed for the pseudo-random generator: equal seeds produce\nequal sequences of numbers.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.round",
+        "summary": "Returns the integer with the smallest difference between it and the given\nnumber.\n",
+        "description": "Returns the integer with the smallest difference between it and the given\nnumber. For example, the value `5.8` returns `6`.\n\nFor values like `0.5` that are equidistant to two integers, the value with\nthe greater difference between it and zero is chosen. In other words, the\nfunction \"rounds away from zero\" such that `0.5` rounds to `1` and `-0.5`\nrounds to `-1`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": "The value to be rounded.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.sign",
+        "summary": "Returns `-1` if `x` is less than `0`, `0` if `x` equals `0`, or `1` if `x`\nis greater than `0`.\n",
+        "description": "Returns `-1` if `x` is less than `0`, `0` if `x` equals `0`, or `1` if `x`\nis greater than `0`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.sin",
+        "summary": "Returns the sine of `x`, assumed to be in radians.\n",
+        "description": "Returns the sine of `x`, assumed to be in radians.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.sinh",
+        "summary": "Returns the hyperbolic sine of `x`.\n",
+        "description": "Returns the hyperbolic sine of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.sqrt",
+        "summary": "Returns the square root of `x`.\n",
+        "description": "Returns the square root of `x`. You can also use the expression `x`^`0.5`\nto compute this value.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.tan",
+        "summary": "Returns the tangent of `x`, assumed to be in radians.\n",
+        "description": "Returns the tangent of `x`, assumed to be in radians.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "math.tanh",
+        "summary": "Returns the hyperbolic tangent of `x`.\n",
+        "description": "Returns the hyperbolic tangent of `x`.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "os": {
+    "name": "os",
+    "type": "library",
+    "summary": "This library provides functions related to time and date.\n",
+    "description": "This library currently serves the purpose of providing information about the\nsystem time under the UTC format. It has been heavily sandboxed from the\nstandard Lua `Library.os` library and does not allow you to perform any\nsystem-altering operations.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "os.clock",
+        "summary": "Returns elapsed time in seconds since an arbitrary baseline with\nsub-microsecond precision.\n",
+        "description": "Returns elapsed time in seconds since an arbitrary baseline with\nsub-microsecond precision. This function is useful for comparing durations\nbetween two events that occur on the same computer, and is the best option\nfor benchmarking.\n\nUnlike with functions such as `Library.os.time()` or\n`Datatype.DateTime.now()`, adjustments to the system clock (such as by the\nuser or [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol)) do not\ncause time to jump forwards or backwards.\n\n```lua\n-- Record the initial time:\nlocal startTime = os.clock()\n-- Do something you want to measure the performance of:\nlocal a, b = 0, 1\nfor _ = 1, 5000000 do\n    a, b = b, a\nend\n-- Measure amount of time this took:\nlocal deltaTime = os.clock() - startTime\nprint(\"Elapsed time: \" .. deltaTime)\n-->  Elapsed time: 0.044425600033719 (actual number may vary)\n```\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "double",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "os.date",
+        "summary": "Formats the given string with date/time information based on the given\ntime.\n",
+        "description": "Formats the given `formatString` with date/time information based on the\ngiven time, or if not provided, the value returned by `Library.os.time()`.\n\nThis function should be avoided in new work. Instead, use the\n`Datatype.DateTime` API, which supports localized formatting.\n\nThe following specifiers (based on the C function strftime) are supported:\n\n<table>\n  <thead>\n    <tr>\n      <th>Specifier</th>\n      <th>Meaning</th>\n      <th>Example<sup>&dagger;</sup></th>\n     </tr>\n  </thead>\n<tbody>\n<tr>\n  <td><code>%a</code></td>\n  <td>Abbreviated weekday name *</td>\n  <td>Mon</td>\n</tr>\n<tr>\n  <td><code>%A</code></td>\n  <td>Full weekday name *</td>\n  <td>Monday</td>\n</tr>\n<tr>\n  <td><code>%b</code></td>\n  <td>Abbreviated month name *</td>\n  <td>Feb</td>\n</tr>\n<tr>\n  <td><code>%B</code></td>\n  <td>Full month name *</td>\n  <td>February</td>\n</tr>\n<tr>\n  <td><code>%c</code></td>\n  <td>Date and time *</td>\n  <td>Mon Feb 12 14:14:35 2024</td>\n</tr>\n<tr>\n  <td><code>%d</code></td>\n  <td>Day of the month</td>\n  <td>12</td>\n</tr>\n<tr>\n  <td><code>%H</code></td>\n  <td>Hour, using 24-hour clock</td>\n  <td>14</td>\n</tr>\n<tr>\n  <td><code>%I</code></td>\n  <td>Hour, using 12-hour clock</td>\n  <td>02</td>\n</tr>\n<tr>\n  <td><code>%j</code></td>\n  <td>Day of year</td>\n  <td>043</td>\n</tr>\n<tr>\n  <td><code>%m</code></td>\n  <td>Month</td>\n  <td>02</td>\n</tr>\n<tr>\n  <td><code>%M</code></td>\n  <td>Minute</td>\n  <td>14</td>\n</tr>\n<tr>\n  <td><code>%p</code></td>\n  <td>Either \"AM\" or \"PM\"</td>\n  <td>PM</td>\n</tr>\n<tr>\n  <td><code>%S</code></td>\n  <td>Second</td>\n  <td>35</td>\n</tr>\n<tr>\n  <td><code>%U</code></td>\n  <td>Week number (first Sunday as the first day of week one)</td>\n  <td>06</td>\n</tr>\n<tr>\n  <td><code>%w</code></td>\n  <td>Weekday</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td><code>%W</code></td>\n  <td>Week number (first Monday as the first day of week one)</td>\n  <td>07</td>\n</tr>\n<tr>\n  <td><code>%x</code></td>\n  <td>Date *</td>\n  <td>02/12/24</td>\n</tr>\n<tr>\n  <td><code>%X</code></td>\n  <td>Time *</td>\n  <td>14:14:35</td>\n</tr>\n<tr>\n  <td><code>%y</code></td>\n  <td>Two-digit year</td>\n  <td>24</td>\n</tr>\n<tr>\n  <td><code>%Y</code></td>\n  <td>Full year</td>\n  <td>2024</td>\n</tr>\n<tr>\n  <td><code>%z</code></td>\n  <td>ISO 8601 offset from UTC in timezone (1 minute = 1, 1 hour = 100)</td>\n  <td>-0800</td>\n</tr>\n<tr>\n  <td><code>%Z</code></td>\n  <td>Timezone name or abbreviation *</td>\n  <td>PST</td>\n</tr>\n<tr>\n  <td><code>%%</code></td>\n  <td>The % character</td>\n  <td>%</td>\n</tr>\n</tbody>\n</table>\n\n\\* This value can vary depending on the current locale.\n\n&dagger; The example provided is for February 12th, 2024 (Monday) at\n2:14:35 PM (14:14:35), run using locale \"en-us\" in Pacific Standard Time\n(PST).\n\nIf the provided `formatString` is exactly `\"*t\"` (local time) or `\"!*t\"`\n(UTC time), this function instead returns a dictionary containing the\nfollowing components, which are normally available in the specifiers\nabove.\n\n<table>\n  <thead>\n    <tr>\n      <th>Field</th>\n      <th>Type</th>\n      <th>Description</th>\n    </tr>\n  </thead>\n<tbody>\n  <tr>\n    <td>year</td>\n    <td>int</td>\n    <td>An integer that describes the current year of the Current Era (ex. 2017)</td>\n  </tr>\n  <tr>\n    <td>month</td>\n    <td>int</td>\n    <td>An integer between 1 and 12 (starting from January) that describes the current month.</td>\n  </tr>\n  <tr>\n    <td>wday</td>\n    <td>int</td>\n    <td>An integer between 1 and 7 (starting from Sunday) that describes the current week day.</td>\n  </tr>\n  <tr>\n    <td>yday</td>\n    <td>int</td>\n    <td>An integer between 1 and 366 describing how many days we are into the year.<br />There can be 366 days if it is a leap year.</td>\n  </tr>\n  <tr>\n    <td>day</td>\n    <td>int</td>\n    <td>An integer between 1 and 31 describing the current day of the month.</td>\n  </tr>\n  <tr>\n    <td>hour</td>\n    <td>int</td>\n    <td>An integer between 1 and 24 describing the current hour of the day.</td>\n  </tr>\n  <tr>\n    <td>min</td>\n    <td>int</td>\n    <td>An integer between 0 and 59 describing the current minute of the hour.</td>\n  </tr>\n  <tr>\n    <td>sec</td>\n    <td>int</td>\n    <td>An integer between 0 and 60 describing the current second of the hour.<br />(60 because the function is described to indicate leap seconds, but in practice it probably doesn't).</td>\n  </tr>\n  <tr>\n    <td>isdst</td>\n    <td>bool</td>\n    <td>A boolean describing if daylight savings time is currently active.</td>\n  </tr>\n</tbody>\n</table>\n",
+        "parameters": [
+          {
+            "name": "formatString",
+            "type": "string",
+            "default": null,
+            "summary": "Must be either `\"*t\"` or `\"!*t\"`.\n"
+          },
+          {
+            "name": "time",
+            "type": "int",
+            "default": null,
+            "summary": "The time value to format.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Dictionary",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "os.difftime",
+        "summary": "Returns the number of seconds from one time to another.\n",
+        "description": "Returns the number of seconds from `t1` to `t2`. The difference is\ncomputed assuming that `t1` and `t2` are correctly casted to the\n[time_t](http://en.cppreference.com/w/cpp/chrono/c/time_t) format.\n",
+        "parameters": [
+          {
+            "name": "t2",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "t1",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "os.time",
+        "summary": "Returns how many seconds have passed since the Unix epoch (1 January 1970,\n00:00:00) under current UTC time.\n",
+        "description": "Returns how many seconds have passed since the Unix epoch (1 January 1970,\n00:00:00), under current UTC time. If provided a table formatted similarly\nto that returned by `Library.os.date()`, it returns the number of seconds\nfrom the Unix epoch to that time instead.\n\nNote that the returned time uses the device's local clock. Most operating\nsystems automatically sync their local time against online time servers,\nso this should be within a few hundred milliseconds. However, users can\neasily disable sync behavior and set the system time to anything they\nwant; for synchronized time between client and server, use\n`Class.Workspace:GetServerTimeNow()` instead.\n\nThis function should be avoided in new work. Instead, use the\n`Datatype.DateTime` API, which supports localized formatting.\n\nWhen you need to precisely measure the time elapsed between two points in\ntime, like when testing performance, use `Library.os.clock()` instead.\n",
+        "parameters": [
+          {
+            "name": "time",
+            "type": "table",
+            "default": "UTC time",
+            "summary": "A dictionary table describing a specific time, similar to that\nreturned by `Library.os.date()`. If not provided, uses the current UTC\ntime.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "string": {
+    "name": "string",
+    "type": "library",
+    "summary": "Provides generic functions to manipulate strings.\n",
+    "description": "The string library provides generic functions to manipulate strings, such as\nto extract substrings or match patterns. You can access the string library by\nthe global `Library.string` library.\n\nSee\n[String pattern reference](../../../luau/strings.md#string-pattern-reference)\nfor details on using `Library.string.match()`, `Library.string.gmatch()`, and\n`Library.string.gsub()` to find (and replace) substrings.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "string.byte",
+        "summary": "Returns the internal numerical codes of the characters\n`s[i], s[i+1], ..., s[j]`. The default value for `i` is 1; the default\nvalue for `j` is `i`. These indices are corrected following the same rules\nof function string.sub.\n",
+        "description": "Returns the internal numerical codes of the characters\n`s[i], s[i+1], ..., s[j]`. The default value for `i` is 1; the default\nvalue for `j` is `i`. These indices are corrected following the same rules\nof function `Library.string.sub()`.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "number",
+            "default": 1,
+            "summary": ""
+          },
+          {
+            "name": "j",
+            "type": "number",
+            "default": "i",
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.char",
+        "summary": "Receives zero or more integers and returns a string with length equal to\nthe number of arguments, in which each character has the internal\nnumerical code equal to its corresponding argument.\n",
+        "description": "Receives zero or more integers and returns a string with length equal to\nthe number of arguments, in which each character has the internal\nnumerical code equal to its corresponding argument.\n",
+        "parameters": [
+          {
+            "name": "...",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.find",
+        "summary": "Looks for the first match of pattern in the string `s` and returns the\nindices of `s` where the occurrence starts and ends.\n",
+        "description": "Searches for the first occurrence of a pattern in a string and returns the\nstart and end indices of the match. If no match is found, it returns\n`nil.` You can specify where to start the search using the optional `init`\nparameter which defaults to 1 and can be negative. An optional `plain`\nparameter turns off pattern matching, so the function performs a plain\nsubstring search; note that if you use `plain`, you must also provide\n`init.`\n\n```lua\n-- Example 1: Basic usage\nlocal s = \"Hello, world!\"\nlocal pattern = \"world\"\nlocal start_index, end_index = string.find(s, pattern)\nprint(start_index, end_index)  -- Output: 8 12\n```\n\n```lua\n-- Example 2: Using init parameter\nlocal s = \"Hello, world! Hello, Roblox!\"\nlocal pattern = \"Hello\"\nlocal start_index, end_index = string.find(s, pattern, 10)\nprint(start_index, end_index)  -- Output: 15 19\n```\n\n```lua\n-- Example 3: Using plain parameter\nlocal s = \"Hello, world! (Hello)\"\nlocal pattern = \"(Hello)\"\nlocal start_index, end_index = string.find(s, pattern, 1, true)\nprint(start_index, end_index)  -- Output: 14 20\n```\n\n```lua\n-- Example 4: No Pattern found\nlocal s = \"Hello, world!\"\nlocal pattern = \"Roblox\"\nlocal start_index, end_index = string.find(s, pattern)\nprint(start_index, end_index)  -- Output: nil\n```\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": "The string to search within.\n"
+          },
+          {
+            "name": "pattern",
+            "type": "string",
+            "default": null,
+            "summary": "The pattern to search for in given string.\n"
+          },
+          {
+            "name": "init",
+            "type": "number",
+            "default": 1,
+            "summary": "The starting index for the search.\n"
+          },
+          {
+            "name": "plain",
+            "type": "bool",
+            "default": false,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": "The starting index of the match.\n"
+          },
+          {
+            "type": "number",
+            "summary": "The ending index of the match.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.format",
+        "summary": "Returns a formatted version of its variable number of arguments following\nthe description given in its first argument, which must be a string.\n",
+        "description": "Returns a formatted version of its variable number of arguments following\nthe description given in its first argument, which must be a string.\n\nYou can convert variables into user-friendly strings of text using the\n`Library.string.format()` function. The function requires the following\nformat:\n\n`%[flags][width].[precision][specifier]`.\n\n#### Specifiers\n\nThe most important part of string formatting is the **specifiers**.\n\n<table>\n  <thead>\n    <tr>\n      <th>Specifier</th>\n      <th>Accepts</th>\n      <th>Outputs</th>\n      <th>Example Output</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><code>c</code></td>\n      <td>integer</td>\n      <td></td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <td><code>d</code> or <code>i</code></td>\n      <td>integer</td>\n      <td>Decimal representation.</td>\n      <td> 321 </td>\n    </tr>\n    <tr>\n      <td><code>e</code> or <code>E</code></td>\n      <td>float</td>\n      <td>Scientific notation using <code>e</code> or <code>E</code>.</td>\n      <td>3.296e2<br>3.296E2</td>\n    </tr>\n    <tr>\n      <td><code>f</code></td>\n      <td>float</td>\n      <td></td>\n      <td>3231.1231</td>\n    </tr>\n    <tr>\n      <td><code>g</code> or <code>G</code></td>\n      <td>float</td>\n      <td>The shorter of <code>e</code>/<code>E</code> and <code>f</code>.</td>\n      <td>3E14<br>3e14</td>\n    </tr>\n    <tr>\n      <td><code>o</code></td>\n      <td>integer</td>\n      <td>Octal representation.</td>\n      <td>610</td>\n    </tr>\n    <tr>\n      <td><code>q</code></td>\n      <td>string</td>\n      <td>String in a form suitable to be safely read back by the Luau interpreter. The string is written between double quotes and all double quotes, new lines, embedded zeros, and backslashes are correctly escaped.</td>\n      <td>\"print(\\\"Hi\\\")\"</td>\n    </tr>\n    <tr>\n      <td><code>s</code></td>\n      <td>string</td>\n      <td></td>\n      <td>Hello world!</td>\n    </tr>\n    <tr>\n      <td><code>u</code></td>\n      <td>integer</td>\n      <td>Decimal representation.</td>\n      <td>3131</td>\n    </tr>\n    <tr>\n      <td><code>x</code> or <code>X</code></td>\n      <td>integer</td>\n      <td>Hexadecimal representation.</td>\n      <td>7fa<br>7FA</td>\n    </tr>\n    <tr>\n      <td><code>*</code></td>\n      <td>any</td>\n      <td>Equivalent to <code>s</code> but accepts any variable by converting it to a string using <code>Global.LuaGlobals.tostring()</code>.</td>\n      <td>table: 0x0123456789abcdef</td>\n    </tr>\n    <tr>\n      <td><code>%</code></td>\n      <td></td>\n      <td><code>%</code> followed by another <code>%</code> will return the <code>%</code> sign itself.</td>\n      <td>%</td>\n    </tr>\n  </tbody>\n</table>\n\n```\nlocal str = \"The magic word is %s\"\nprint(string.format(str, \"Roblox\"))\n-- The magic word is Roblox\n\nlocal str = \"The magic word is %q\"\nprint(string.format(str, \"Roblox\"))\n-- The magic word is \"Roblox\"\n\nlocal str = \"Skip to \\na new line and \\nanother new line!\"\nprint(string.format(str, \"%q\"))\n--[[ Output:\nSkip to\na new line and\nanother new line!\n]]\n```\n\n#### Flags\n\n<table>\n<thead>\n  <tr>\n    <th>Flag</th>\n    <th>Description</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td><code>-</code></td>\n    <td>Left-justify the given field width (see <code>Width</code> below). Right justification is the default.</td>\n  </tr>\n  <tr>\n    <td><code>+</code></td>\n    <td>Forces a \"+\" sign to precede a number. Has no effect on negative numbers.</td>\n  </tr>\n  <tr>\n    <td>(space)</td>\n    <td>One blank space is inserted before a positive number, while negative numbers are unaffected. This is useful for making positive and negative numbers vertically align in a visual stacked list.</td>\n  </tr>\n  <tr>\n    <td><code>#</code></td>\n    <td>When used with <code>o</code> and <code>x</code>/<code>X</code>, writes a 0 (octal) or 0x/0X (hex) before values other than zero.<br>When used with <code>e</code>/<code>E</code> and <code>f</code>, forces the output to contain a decimal point, even if no digits would follow (by default, no decimal point is written if no digits follow).<br>When used with <code>g</code> or <code>G</code>, the result is the same as with <code>e</code> or <code>E</code> but trailing zeros are not removed.</td>\n  </tr>\n  <tr>\n    <td><code>0</code></td>\n    <td>Left-pads the number with zeros instead of empty spaces (see <code>Width</code> below).</td>\n  </tr>\n</tbody>\n</table>\n\n```lua\nlocal str = \"%-10d\"\nprint(string.format(str, 300) .. \"]\")\n-- 300       ]\n-- There are 7 spaces between '300' and ']'\n\nlocal str = \"%+i versus %+i\"\nprint(string.format(str, 300, -300)) -- +300 versus -300\n\nlocal str = \"There is a% i%% chance of rain in Seattle today.\"\nprint(string.format(str, 100))\n-- There is a 100% chance of rain in Seattle today.\n```\n\n#### Width\n\n<table>\n  <thead>\n    <tr>\n      <th>Width</th>\n      <th>Description</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>(number)</td>\n      <td>Minimum number of characters to return. If the number of characters to be formatted is less than this number, the result is padded with blank spaces.</td>\n    </tr>\n  </tbody>\n</table>\n\n```lua\nlocal str = \"%012i\"\nprint(\"Score: \" .. string.format(str, 15000))\n-- Output: Score: 000000015000\n-- The output has 12 digits total, left-padded with zeros\n```\n\n#### Precision\n\nThe default precision is 1. If you give a period without a value, the\ndefault is 0.\n\n<table>\n  <thead>\n    <tr>\n      <th>Precision</th>\n      <th>Description</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><code>.</code>(number)</td>\n      <td>For integer specifiers (<code>d</code>, <code>i</code>, <code>o</code>, <code>u</code>, <code>x</code>/<code>X</code>), precision specifies the minimum number of digits to be returned. If the value to be formatted is shorter than this number, the result is padded with leading zeros. A precision of 0 means that no character is written for the value 0.<br>For <code>e</code>/<code>E</code> and <code>f</code> specifiers, this is the number of digits to be printed after the decimal point.<br>For <code>g</code>/<code>G</code> specifiers, this is the maximum number of digits (before the <code>e</code>/<code>E</code>, if present).<br>For <code>s</code>, this is the maximum number of characters to be returned.<br>For <code>c</code> and <code>q</code>, this has no effect.</td>\n    </tr>\n  </tbody>\n</table>\n\n```lua\n-- Add decimal with precision of 2 for a currency output\nlocal str = \"$%.2f\"\nprint(string.format(str, 300)) -- Output: $300.00\n\n-- Return first 6 letters of a string\nlocal str = \"%.6s\"\nprint(string.format(str, \"Robloxian\")) -- Output: Roblox\n\nlocal str = \"Once upon a time, there was a dragon named %s and it had %.8f horns.\"\nprint(string.format(str, \"Pi\", math.pi))\n-- Output: Once upon a time, there was a dragon named Pi and it had 3.14159265 horns.\n```\n",
+        "parameters": [
+          {
+            "name": "formatstring",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.gmatch",
+        "summary": "Returns an iterator function that returns the next captures from pattern\nover the string `s` each time it's called.\n",
+        "description": "Returns an iterator function that returns the next captures from pattern\nover the string `s` each time it's called.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "pattern",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.gsub",
+        "summary": "Returns a copy of `s` in which all or the first `n` occurrences of the\npattern are replaced with the given replacement. The second value returned\nis the total number of substitutions made.\n",
+        "description": "Short for global substitution. Returns a copy of `s` in which all (or the\nfirst n, if given) occurrences of the pattern are substituted (replaced)\nwith the given `replacement`. The second value returned is the total\nnumber of substitutions made.\n\nThe `replacement` can be one of several types, each used differently to\ndetermine the actual string:\n\n- string: The pattern is replaced with the string directly\n- table: The string that matched the pattern is looked up in the table as\n  a key, and the value (string) is what replaces it, if it exists.\n- function: Called with the string that matched the pattern, should return\n  the string to replace the matched pattern.\n\nAn optional final argument can be provided which specifies the maximum\nnumber of substitutions to make (for example, stop after 2 replacements)\n\n#### Various Examples\n\n```lua\n-- Basic replacement\nstring.gsub(\"I love tacos!\", \"tacos\", \"Roblox\") --> I love Roblox! 1\n-- Replacement with a pattern\nstring.gsub(\"I like red!\", \"%w+\", \"word\") --> word word word! 3\n-- Replacement table\nstring.gsub(\"I play Roblox.\", \"%w+\", {I=\"Je\", play=\"joue \u00e0\"}) --> Je joue \u00e0 Roblox. 3\n-- Replacement function\nstring.gsub(\"I have 2 cats.\", \"%d+\", function(n) return tonumber(n) * 12 end) --> I have 24 cats. 1\n-- Replace only twice\nstring.gsub(\"aaa\", \"a\", \"b\", 2) --> bba 2\n-- Replacement with capture groups (maximum of nine)\nstring.gsub(\"love2play Roblox\", \"(%w+)(%d+)(%w+)%s+(%w+)\", \"I %1 %2 %3 %4!\") --> I love 2 play Roblox! 1\n```\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": "The string whose occurrences of the given pattern shall be replaced.\n"
+          },
+          {
+            "name": "pattern",
+            "type": "string",
+            "default": null,
+            "summary": "The pattern to be matched and replaced.\n"
+          },
+          {
+            "name": "replacement",
+            "type": "Variant",
+            "default": null,
+            "summary": "Determines what should replace the occurrence(s) of the given pattern.\n"
+          },
+          {
+            "name": "replacements",
+            "type": "number",
+            "default": null,
+            "summary": "The maximum number of substitutions to make.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          },
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.len",
+        "summary": "Returns the length of a string.\n",
+        "description": "Returns the length of a string.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.lower",
+        "summary": "Returns a copy of a string with all uppercase letters changed to\nlowercase.\n",
+        "description": "Returns a copy of a string with all uppercase letters changed to\nlowercase.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.match",
+        "summary": "Looks for the first match of pattern in the string `s`. If a match is\nfound, it is returned; otherwise, it returns `nil`. A third, optional\nnumerical argument, init, specifies where to start the search.\n",
+        "description": "Looks for the first match of pattern in the string `s`. If a match is\nfound, it is returned; otherwise, it returns `nil`. A third, optional\nnumerical argument, init, specifies where to start the search; its default\nvalue is 1 and can be negative.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "pattern",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "init",
+            "type": "number",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.pack",
+        "summary": "Returns a binary string containing the provided arguments.\n",
+        "description": "Returns a binary string containing the provided arguments. The first\nargument, `format`, determines the way the remaining arguments are packed;\nsee [here](https://www.lua.org/manual/5.3/manual.html#6.4.2) for options.\n",
+        "parameters": [
+          {
+            "name": "format",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "Variant",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.packsize",
+        "summary": "Returns the size in bytes of any string packed with a given description.\n",
+        "description": "Returns the size in bytes of any string packed with a given description.\nThe sole argument, `format`, determines the way the remaining arguments\nare packed, but you cannot use `s` and `z` because they have variable\nlengths. See [here](https://www.lua.org/manual/5.3/manual.html#6.4.2) for\noptions.\n",
+        "parameters": [
+          {
+            "name": "format",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.rep",
+        "summary": "Returns a string that is the concatenation of `n` copies of the string\n`s`.\n",
+        "description": "Returns a string that is the concatenation of `n` copies of the string\n`s`.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "n",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.reverse",
+        "summary": "Returns a string that is the string `s` reversed.\n",
+        "description": "Returns a string that is the string `s` reversed.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.split",
+        "summary": "Splits a string into parts based on the defined separator character(s),\nreturning a table of ordered results.\n",
+        "description": "Splits a string into parts based on the defined separator character(s),\nreturning a table of ordered results.\n\nIf an empty \"slice\" is located, that part will be returned as an empty\nstring. For instance `string.split(\"abc||def\", \"|\")` will return a table\nwith three strings: `\"abc\"`, `\"\"`, and `\"def\"`.\n\n```lua\nlocal values = input:split(\",\")\nprint(values[1], values[2], values[3])\n```\n\nAlso note that whitespace from the original string will be preserved, for\nexample `string.split(\"abc _ def\", \"_\")` will honor the whitespace on both\nsides of the `_` separator. By default, the separator character is `,` but\nyou can specify an alternative character or series of characters.\n\n**Corner Cases**\n\n#### Empty String\n\n```lua\n\"\" --> \"\"\n```\n\n#### Empty Slices\n\n```lua\n\"foo,,bar\" --> \"foo\", \"\", \"bar\"\n\",foo\" --> \"\", \"foo\"\n\"foo,\" --> \"foo\", \"\"\n\",\" --> \"\", \"\"\n\",,\" --> \"\", \"\", \"\"\n```\n\n#### Whitespace Preserved\n\n```lua\n\"   whitespace   \" --> \"   whitespace   \"\n\"foo , bar\" --> \"foo \", \" bar\"\n```\n\n#### Invalid UTF-8\n\n```lua\n\"\\xFF\" --> \"\\xFF\"\n\"\\xFD,\\xFE\" --> \"\\xFD\", \"\\xFE\"\n```\n\n#### Unicode\n\n```lua\n\"\uff0c\" --> U+FF0C FULLWIDTH COMMA\n\"\u6211\u5f88\u9ad8\u5174\uff0c\u4f60\u5462\uff1f\" --> \"\u6211\u5f88\u9ad8\u5174\", \"\u4f60\u5462\uff1f\"\n\"\u2022\" --> U+2022 BULLET\n\"hello\u2022world\" --> \"hello\", \"world\"\n```\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": "The string to split.\n"
+          },
+          {
+            "name": "separator",
+            "type": "string",
+            "default": ",",
+            "summary": "The separator character(s) to be used for splitting the string.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.sub",
+        "summary": "Returns the substring of `s` that starts at `i` and continues until and\nincluding `j`. `i` and `j` can be negative. `i` defaults to 1 and `j`\ndefaults to `-1`.\n",
+        "description": "Returns the substring of `s` that starts at `i` and continues until and\nincluding `j`. `i` and `j` can be negative. `i` defaults to 1 and `j`\ndefaults to `-1`.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": ""
+          },
+          {
+            "name": "j",
+            "type": "int",
+            "default": -1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.unpack",
+        "summary": "Extracts the values packed in the provided binary string.\n",
+        "description": "Extracts the values packed in the provided binary string based on the\nfirst argument, `format`, which should match the one originally used to\n`Library.string.pack|pack()` the string; see\n[here](https://www.lua.org/manual/5.3/manual.html#6.4.2) for options. The\noptional third parameter determines the byte at which the reading starts.\n",
+        "parameters": [
+          {
+            "name": "format",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "data",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "readStart",
+            "type": "string",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": "The values packed into the provided binary string, plus the index of\nthe first unread byte.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "string.upper",
+        "summary": "Returns a copy of a string with all lowercase letters changed to\nuppercase.\n",
+        "description": "Returns a copy of a string with all lowercase letters changed to\nuppercase.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "table": {
+    "name": "table",
+    "type": "library",
+    "summary": "A library of table functions.\n",
+    "description": "This library provides generic functions for table/array manipulation,\nproviding all its functions inside the global `Library.table` variable. Most\nfunctions in the `Library.table` library assume that the table represents an\narray or a list. For these functions, the \"length\" of a table means the result\nof the length operator.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "table.clear",
+        "summary": "Sets all keys in the given table to `nil`.\n",
+        "description": "Sets the value for all keys within the given table to `nil`. This causes\nthe `#` operator to return `0` for the given table. The allocated capacity\nof the table's array portion is maintained, which allows for efficient\nre-use of the space.\n\n```lua\nlocal grades = {95, 82, 71, 92, 100, 60}\nprint(grades[4], #grades) --> 92, 6\ntable.clear(grades)\nprint(grades[4], #grades) --> nil, 0\n-- If grades is filled again with the same number of entries,\n-- no potentially expensive array resizing will occur\n-- because the capacity was maintained by table.clear.\n```\n\nThis function does not delete/destroy the table provided to it. This\nfunction is meant to be used specifically for tables that are to be\nre-used.\n",
+        "parameters": [
+          {
+            "name": "table",
+            "type": "table",
+            "default": null,
+            "summary": "The table whose keys will be cleared.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.clone",
+        "summary": "Returns a shallow copy of the provided table.\n",
+        "description": "Returns an unfrozen shallow copy of the provided table.\n\n```lua\nlocal original = {\n\tkey = \"value\",\n\tengine = \"Roblox\",\n\tplayerID = 505306092\n}\n\nlocal clone = table.clone(original)\n```\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be cloned.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": "The clone of the provided table.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.concat",
+        "summary": "Returns the given range of table elements as a string where each element\nis separated by the given separator.\n",
+        "description": "Given an array where all elements are strings or numbers, returns the\nstring `t[i] ... sep ... t[i+1] ... sep ... t[j]`. The default value for\nsep is an empty string, the default for `i` is 1, and the default for `j`\nis #t. If i is greater than `j`, returns the empty string.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table that will be converted into a string.\n"
+          },
+          {
+            "name": "sep",
+            "type": "string",
+            "default": "",
+            "summary": "The string that will be concatenated between each entry in the table.\n"
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": "The starting index of the table concatenation.\n"
+          },
+          {
+            "name": "j",
+            "type": "int",
+            "default": null,
+            "summary": "The ending index of the table concatenation.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.create",
+        "summary": "Returns a new table populated with many instances of the specified value.\n",
+        "description": "Creates a table with the array portion allocated to the given `number` of\nelements, optionally filled with the given `value`.\n\n```lua\nlocal t = table.create(3, \"Roblox\")\nprint(table.concat(t)) --> RobloxRobloxRoblox\n```\n\nIf you are inserting into large array-like tables and are certain of a\nreasonable upper limit to the number of elements, it's recommended to use\nthis function to initialize the table. This ensures the table's array\nportion of its memory is sufficiently sized, as resizing it can be\nexpensive. For small quantities this is typically not noticeable.\n",
+        "parameters": [
+          {
+            "name": "count",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "value",
+            "type": "Variant",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.find",
+        "summary": "Returns the index of the first occurrence of `needle` within `haystack`\nstarting from `init`.\n",
+        "description": "Within the given array-like table `haystack`, find the first occurrence of\nvalue `needle`, starting from index `init` or the beginning if not\nprovided. If the value is not found, `nil` is returned.\n\nA [linear search](https://en.wikipedia.org/wiki/Linear_search) algorithm\nis performed.\n\n```lua\nlocal t = {\"a\", \"b\", \"c\", \"d\", \"e\"}\nprint(table.find(t, \"d\")) --> 4\nprint(table.find(t, \"z\")) --> nil, because z is not in the table\nprint(table.find(t, \"b\", 3)) --> nil, because b appears before index 3\n```\n",
+        "parameters": [
+          {
+            "name": "haystack",
+            "type": "table",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "needle",
+            "type": "Variant",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "init",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.foreach",
+        "summary": "Iterates over the provided table, passing the key and value of each\niteration over to the provided function.\n",
+        "description": "Iterates over the provided table, passing the key and value of each\niteration over to the provided function. This function has been deprecated\nand is not recommended for use in new code; use a `for` loop instead.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be iterated over.\n"
+          },
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": "The function that will be used for the iteration. This function will\nreceive 2 arguments for each iteration, where the 1st argument is the\nkey, and the 2nd argument is the value.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.foreachi",
+        "summary": "Similar to `Library.table.foreach()` except index-value pairs are passed\ninstead of key-value pairs.\n",
+        "description": "This is similar to `Library.table.foreach()` except that index-value pairs\nare passed, not key-value pairs. This function has been deprecated and is\nnot recommended for use in new code; use a `for` loop instead.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table to be iterated over.\n"
+          },
+          {
+            "name": "f",
+            "type": "function",
+            "default": null,
+            "summary": "The function that will be used for the iteration. This function will\nreceive 2 arguments for each iteration, where the 1st argument is the\nindex, and the 2nd argument is the value.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.freeze",
+        "summary": "Makes the given table read-only.\n",
+        "description": "This function makes the given table read-only, effectively \"freezing\" it\nin its current state. Attempting to modify a frozen table throws an error.\n\nThis freezing effect is shallow, which means that you can write to a table\nwithin a frozen table. To deep freeze a table, call this function\nrecursively on all of the descending tables.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to be frozen.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": "The frozen table.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.getn",
+        "summary": "Returns the number of elements in the table passed.\n",
+        "description": "Returns the number of elements in the table passed. This function has been\ndeprecated and is not recommended for use in new code; use `#t` instead.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table whose size is being measured.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [
+          "Deprecated"
+        ],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.insert",
+        "summary": "Inserts the provided value to the target position of the array.\n",
+        "description": "Inserts the provided value to the target position of the array.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table that is being appended to.\n"
+          },
+          {
+            "name": "pos",
+            "type": "number",
+            "default": null,
+            "summary": "The position at which the value will be inserted.\n"
+          },
+          {
+            "name": "value",
+            "type": "Variant",
+            "default": null,
+            "summary": "The value that will be appended to the table.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.insert",
+        "summary": "Appends the provided value to the end of the array.\n",
+        "description": "Appends the provided value to the end of the array.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table that is being appended to.\n"
+          },
+          {
+            "name": "value",
+            "type": "Variant",
+            "default": null,
+            "summary": "The value that will be appended to the table.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.isfrozen",
+        "summary": "Returns `true` if the given table is frozen and `false` if it isn't\nfrozen.\n",
+        "description": "This function returns `true` if the given table is frozen and `false` if\nit isn't frozen. You can freeze tables using `Library.table.freeze()`.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": "The table to check.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "bool",
+            "summary": "Whether the table is frozen from `Library.table.freeze()`.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.maxn",
+        "summary": "Returns the maximum numeric key of the provided table, or zero if the\ntable has no numeric keys.\n",
+        "description": "Returns the maximum numeric key of the provided table, or zero if the\ntable has no numeric keys. Gaps in the table are ignored.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "table",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.move",
+        "summary": "Copies the specified range of elements from one table to another.\n",
+        "description": "Copies elements in table `src` from `src[a]` up to `src[b]` into table\n`dst` starting at index `t`. Equivalent to the assignment statement\n`dst[t], ..., dst[t + (b - a)] = src[a], ..., src[b]`.\n\nThe default for `dst` is `src`. The destination range may overlap with the\nsource range. Returns `dst` for convenience.\n\n```lua\nlocal sourceTable = {4, 5} -- Table of data to copy from\nlocal destTable = {1, 2, 3} -- Table to add copied data to\n\ntable.move(\n\tsourceTable, -- Source table\n\t1, -- Index to start from in source table\n\t#sourceTable, -- Index up to (and including) from source table\n\t#destTable + 1, -- Index within destination table to move data into\n\tdestTable -- Destination table\n)\nprint(destTable) --> {1, 2, 3, 4, 5}\n```\n",
+        "parameters": [
+          {
+            "name": "src",
+            "type": "table",
+            "default": null,
+            "summary": "Source table.\n"
+          },
+          {
+            "name": "a",
+            "type": "number",
+            "default": null,
+            "summary": "Start copying at `src[a]`.\n"
+          },
+          {
+            "name": "b",
+            "type": "number",
+            "default": null,
+            "summary": "Copy up to and including `src[b]`.\n"
+          },
+          {
+            "name": "t",
+            "type": "number",
+            "default": null,
+            "summary": "Copy into `dst[t], ...`.\n"
+          },
+          {
+            "name": "dst",
+            "type": "table",
+            "default": "src",
+            "summary": "Destination table.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "table",
+            "summary": "`dst` for convenience.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.pack",
+        "summary": "Returns a new table containing the provided values.\n",
+        "description": "Returns a new table with all arguments stored into keys 1, 2, etc. and\nwith a field \"n\" with the total number of arguments. Note that the\nresulting table may not be a sequence.\n\n```lua\nlocal t = table.pack(1, 2, 3)\nprint(table.concat(t, \", \")) --> 1, 2, 3\n```\n",
+        "parameters": [
+          {
+            "name": "values...",
+            "type": "Variant",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.remove",
+        "summary": "Removes the specified element from the array, shifting later elements down\nto fill in the empty space if possible.\n",
+        "description": "Removes from array t the element at position pos, returning the value of\nthe removed element. When pos is an integer between `1` and `#t`, it\nshifts down the elements `t[pos+1], t[pos+2], ..., t[#t]` and erases\nelement `t[#t]`. If the pos parameter is not provided, pos defaults to the\nlength of the table removing the last element.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": "The table that is having an element removed.\n"
+          },
+          {
+            "name": "pos",
+            "type": "number",
+            "default": null,
+            "summary": "The index of the element being removed.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Variant",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.sort",
+        "summary": "Sorts table elements using the provided comparison function or the `<`\noperator.\n",
+        "description": "Sorts elements of array t in a given order, from `t[1]` to `t[#t]`. If\n`comp` is given, then it must be a function that receives two elements and\nreturns true when the first element must come before the second in the\nfinal order.\n\nThe error `invalid order function for sorting` is thrown if both\n`comp(a, b)` and `comp(b, a)` return `true`.\n\nIf `comp` is not given, then the standard Luau operator `<` is used\ninstead.\n",
+        "parameters": [
+          {
+            "name": "t",
+            "type": "Array",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "comp",
+            "type": "function",
+            "default": "nil",
+            "summary": "An optional comparison function to be used when comparing elements in\nthe table. This function receives two elements, and should return true\nif the first element should be sorted before the second in the final\norder.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "table.unpack",
+        "summary": "Returns all elements from the given list as a tuple.\n",
+        "description": "Returns the elements from the given list. By default, `i` is 1 and `j` is\nthe length of `list`.\n\nNote that this same functionality is also provided by the global\n`Global.LuaGlobals.unpack()` function.\n",
+        "parameters": [
+          {
+            "name": "list",
+            "type": "table",
+            "default": null,
+            "summary": "The list of elements to be unpacked.\n"
+          },
+          {
+            "name": "i",
+            "type": "number",
+            "default": 1,
+            "summary": "The index of the first element to unpack.\n"
+          },
+          {
+            "name": "j",
+            "type": "number",
+            "default": "#list",
+            "summary": "The index of the last element to unpack.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "task": {
+    "name": "task",
+    "type": "library",
+    "summary": "Allows for functions and threads to be coordinated with the engine's\nscheduler.\n",
+    "description": "The **task** library allows for functions and threads to be scheduled with the\nengine's scheduler.\n\nThe functions available in this library generally support functions and\nthreads. In most cases using a function is sufficient, but for more advanced\ncases it's recommended you familiarize yourself with the `Library.coroutine`\nlibrary.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [],
+    "functions": [
+      {
+        "name": "task.spawn",
+        "summary": "Calls/resumes a function/coroutine immediately through the engine's\nscheduler.\n",
+        "description": "Accepts a function or a thread (as returned by\n`Library.coroutine.create()`) and calls/resumes it immediately through the\nengine's scheduler. Arguments after the first are sent to the\nfunction/thread.\n\nIf the calling script is currently running in a serial execution phase,\nthen the spawned function or thread is resumed in the current serial\nexecution phase. If the calling script is currently running in a parallel\nexecution phase, then the spawned function or thread is resumed in the\ncurrent parallel execution phase. For more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [
+          {
+            "name": "functionOrThread",
+            "type": "function | thread",
+            "default": null,
+            "summary": "A function or a thread returned by `Library.coroutine.create()`.\n"
+          },
+          {
+            "name": "...",
+            "type": "Variant",
+            "default": null,
+            "summary": "Arguments to send to the function or thread.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "thread",
+            "summary": "The scheduled thread.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.defer",
+        "summary": "Calls/resumes a function/coroutine at the end of the current resumption\ncycle.\n",
+        "description": "Accepts a function or a thread (as returned by\n`Library.coroutine.create()`) and defers it until the end of the current\nresume point within the current frame.\n\nThis function should be used when a similar behavior to\n`Library.task.spawn()` is desirable, but the thread does not need to run\nimmediately.\n\nIf the calling script is currently running in a serial execution phase,\nthen the deferred function or thread is resumed in a serial execution\nphase. If the calling script is currently running in a parallel execution\nphase, then the deferred function or thread is resumed in a parallel\nexecution phase. For more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [
+          {
+            "name": "functionOrThread",
+            "type": "function | thread",
+            "default": null,
+            "summary": "A function or a thread returned by coroutine.create.\n"
+          },
+          {
+            "name": "...",
+            "type": "Variant",
+            "default": null,
+            "summary": "Arguments to send to the function or thread.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "thread",
+            "summary": "The scheduled thread.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.delay",
+        "summary": "Schedules a function/coroutine to be called/resumed on the next Heartbeat\nafter the given duration (in seconds) has passed, without throttling.\n",
+        "description": "Accepts a function or a thread (as returned by\n`Library.coroutine.create()`) and schedules it to be called/resumed on the\nnext `Class.RunService.Heartbeat|Heartbeat` after the given amount of time\nin seconds has elapsed. Arguments after the second are sent to the\nfunction/thread.\n\nThis function differs from the deprecated global `delay()` function in\nthat **no throttling occurs**: on the very same\n`Class.RunService.Heartbeat|Heartbeat` step in which enough time has\npassed, the function is guaranteed to be called/resumed. Providing a\nduration of zero (`0`) will guarantee that the function is called on the\nvery next `Class.RunService.Heartbeat|Heartbeat`.\n\nYou can calculate the actual time passed by calling `Library.os.clock()`\nupon scheduling and in the scheduled function.\n\nIf the calling script is currently running in a serial execution phase,\nthen the delayed function or thread is resumed in a serial execution\nphase. If the calling script is currently running in a parallel execution\nphase, then the delayed function or thread is resumed in a parallel\nexecution phase. For more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [
+          {
+            "name": "duration",
+            "type": "number",
+            "default": null,
+            "summary": "The minimum number of seconds that must pass before the\nfunction/thread is called/resumed.\n"
+          },
+          {
+            "name": "functionOrThread",
+            "type": "function | thread",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "...",
+            "type": "Variant",
+            "default": null,
+            "summary": "Arguments to be passed to the function/thread when it is due to be\ncalled/resumed.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "thread",
+            "summary": "The scheduled thread.\n"
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.desynchronize",
+        "summary": "Causes the following code to be run in parallel.\n",
+        "description": "If the calling script is currently running in a serial execution phase,\n`desynchronize()` suspends the script and the script will be resumed in\nthe next parallel execution phase. If the calling script is currently\nrunning in a parallel execution phase, `desynchronize()` returns\nimmediately and has no effect.\n\nOnly scripts which are descendants of an `Class.Actor` may call this\nmethod. If a script outside of an `Class.Actor` calls this method, an\nerror will be raised. `Class.ModuleScript|ModuleScripts` may also call\n`desynchronize()` as long as the instantiation of the module calling it\nwas required by a script that is a descendant of an `Class.Actor`.\n\nFor more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.synchronize",
+        "summary": "Causes the following code to be run in serial.\n",
+        "description": "If the calling script is currently running in a parallel execution phase,\n`synchronize()` suspends the script and the script will be resumed in the\nnext serial execution phase. If the calling script is currently running in\na serial execution phase, `synchronize()` returns immediately and has no\neffect.\n\nOnly scripts which are descendants of an `Class.Actor` may call this\nmethod. If a script outside of an `Class.Actor` calls this method, an\nerror will be raised. `Class.ModuleScript|ModuleScripts` may also call\n`synchronize()` as long as the instantiation of the module calling it was\nrequired by a script that is a descendant of an `Class.Actor`.\n\nFor more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.wait",
+        "summary": "Yields the current thread without throttling.\n",
+        "description": "Yields the current thread until the given duration (in seconds) has\nelapsed, then resumes the thread on the next\n`Class.RunService.Heartbeat|Heartbeat` step. The actual amount of time\nelapsed is returned.\n\nIf no duration is given, it will default to zero (`0`). This means the\nthread resumes on the very next step, which is equivalent in behavior to\n`Class.RunService.Heartbeat:Wait()`\n\nUnlike the deprecated global `wait()`, this function **does not throttle**\nand guarantees the resumption of the thread on the first Heartbeat that\noccurs when it is due. This function also only returns the elapsed time\nand nothing else.\n\nIf the calling script is currently running in a serial execution phase,\nthen the script is resumed in a serial execution phase. If the calling\nscript is currently running in a parallel execution phase, then the script\nis resumed in a parallel execution phase. For more information, see\n[Parallel Luau](../../../scripting/multithreading.md).\n",
+        "parameters": [
+          {
+            "name": "duration",
+            "type": "number",
+            "default": 0,
+            "summary": "The amount of time in seconds that should elapse before the current\nthread is resumed.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "task.cancel",
+        "summary": "Cancels a thread, preventing it from being resumed.\n",
+        "description": "Cancels a thread and closes it, preventing it from being resumed manually\nor by the engine's scheduler.\n\nThis function can be used with other members of the **task** library that\nreturn a thread to cancel them before they are resumed. For example:\n\n```lua\nlocal thread = task.delay(5, function()\n\tprint(\"Hello world!\")\nend)\n\ntask.cancel(thread)\n```\n\nNote that threads may be in a state where it is impossible to cancel them.\nFor example, the currently executing thread and threads that have resumed\nanother coroutine may not be cancelled. If this is the case, an error will\nbe generated. However, code should not rely on specific thread states or\nconditions causing `Library.task.cancel()` to fail. It is possible that\nfuture updates will eliminate these constraints and allow threads in these\nstates to be successfully cancelled.\n",
+        "parameters": [
+          {
+            "name": "thread",
+            "type": "thread",
+            "default": null,
+            "summary": "The thread that will be cancelled.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "()",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "utf8": {
+    "name": "utf8",
+    "type": "library",
+    "summary": "This library provides basic support for `UTF-8` encoding.\n",
+    "description": "This library provides basic support for `UTF-8` encoding. This library does\nnot provide any support for Unicode other than the handling of the encoding.\nAny operation that needs the meaning of a character, such as character\nclassification, is outside its scope.\n\nUnless stated otherwise, all functions that expect a byte position as a\nparameter assume that the given position is either the start of a byte\nsequence or one plus the length of the subject string. As in the string\nlibrary, negative indices count from the end of the string.\n\nYou can find a large catalog of usable `UTF-8` characters\n[here](https://www.w3schools.com/charsets/ref_html_utf8.asp).\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [
+      {
+        "name": "utf8.charpattern",
+        "type": "string",
+        "summary": "The pattern `\"[%z\\x01-\\x7F\\xC2-\\xF4][\\x80-\\xBF]*\"`, which matches exactly\nzero or more UTF-8 byte sequences, assuming that the subject is a valid\nUTF-8 string.\n",
+        "description": "The pattern `\"[%z\\x01-\\x7F\\xC2-\\xF4][\\x80-\\xBF]*\"`, which matches exactly\nzero or more UTF-8 byte sequence, assuming that the subject is a valid\nUTF-8 string.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ],
+    "functions": [
+      {
+        "name": "utf8.char",
+        "summary": "Converts zero or more codepoints to UTF-8 byte sequences.\n",
+        "description": "Receives zero or more codepoints as integers, converts each one to its\ncorresponding UTF-8 byte sequence and returns a string with the\nconcatenation of all these sequences.\n",
+        "parameters": [
+          {
+            "name": "codepoints",
+            "type": "Tuple<int>",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.codes",
+        "summary": "Returns an iterator function that iterates over all codepoints in a given\nstring.\n",
+        "description": "Returns an iterator function so that the construction:\n\n```lua\nfor position, codepoint in utf8.codes(str) do\n\t-- body\nend\n```\n\nwill iterate over all codepoints in string `str`. It raises an error if it\nmeets any invalid byte sequence.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": "The string to iterate over.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          },
+          {
+            "type": "string",
+            "summary": ""
+          },
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.codepoint",
+        "summary": "Returns the codepoints (as integers) from all codepoints in a given\nstring.\n",
+        "description": "Returns the codepoints (as integers) from all codepoints in the provided\nstring (str) that start between byte positions `i` and `j` (both\nincluded). The default for `i` is `1` and for `j` is `i`. It raises an\nerror if it meets any invalid byte sequence.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": "The index of the codepoint that should be fetched from this string.\n"
+          },
+          {
+            "name": "j",
+            "type": "int",
+            "default": "i",
+            "summary": "The index of the last codepoint between `i` and `j` that will be\nreturned. If excluded, this will default to the value of `i`.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "Tuple<int>",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.len",
+        "summary": "Returns the number of UTF-8 codepoints in a given string.\n",
+        "description": "Returns the number of UTF-8 codepoints in the string _str_ that start\nbetween positions `i` and `j` (both inclusive). The default for `i` is `1`\nand for `j` is `-1`. If it finds any invalid byte sequence, returns a nil\nvalue plus the position of the first invalid byte.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": "The starting position.\n"
+          },
+          {
+            "name": "j",
+            "type": "int",
+            "default": -1,
+            "summary": "The ending position.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "int",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.offset",
+        "summary": "Returns the position (in bytes) where the encoding of the `n`\u2011th codepoint\nof `s` (counting from byte position `i`) starts.\n",
+        "description": "Returns the position (in bytes) where the encoding of the `n`\u2011th codepoint\nof `s` (counting from byte position `i`) starts. A negative `n` gets\ncharacters before position `i`. The default for `i` is `1` when `n` is\nnon-negative and `#s + 1` otherwise, so that `utf8.offset(s, -n)` gets the\noffset of the `n`\u2011th character from the end of the string. If the\nspecified character is neither in the subject nor right after its end, the\nfunction returns `nil`.\n",
+        "parameters": [
+          {
+            "name": "s",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "n",
+            "type": "int",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "int",
+            "default": 1,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "int?",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.graphemes",
+        "summary": "Returns an iterator function that iterates over the grapheme clusters of a\ngiven string.\n",
+        "description": "Returns an iterator function so that\n\n```lua\nfor first, last in utf8.graphemes(str) do\n\tlocal grapheme = s:sub(first, last)\n\t-- body\nend\n```\n\nwill iterate the grapheme clusters of the string.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "i",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "j",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "function",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.nfcnormalize",
+        "summary": "Converts the input string to Normal Form C.\n",
+        "description": "Converts the input string to Normal Form C, which tries to convert\ndecomposed characters into composed characters.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "utf8.nfdnormalize",
+        "summary": "Converts the input string to Normal Form D.\n",
+        "description": "Converts the input string to Normal Form D, which tries to break up\ncomposed characters into decomposed characters.\n",
+        "parameters": [
+          {
+            "name": "str",
+            "type": "string",
+            "default": null,
+            "summary": "The string to convert.\n"
+          }
+        ],
+        "returns": [
+          {
+            "type": "string",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  },
+  "vector": {
+    "name": "vector",
+    "type": "library",
+    "summary": "A library of vector functions.\n",
+    "description": "This library implements functionality for the vector type in addition to the\nbuilt-in primitive operator support. It uses vectors with three components\n(`x`, `y`, and `z`).\n\nIndividual vector components can be accessed using the fields `x` or `X`, `y`\nor `Y`, `z` or `Z`. Since vector values are immutable, writing to individual\ncomponents is not supported.\n",
+    "tags": [],
+    "code_samples": [],
+    "properties": [
+      {
+        "name": "vector.zero",
+        "type": "vector",
+        "summary": "Constant vector with all components set to `0`.\n",
+        "description": "Constant vector with all components set to `0`.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.one",
+        "type": "vector",
+        "summary": "Constant vector with all components set to `1`.\n",
+        "description": "Constant vector with all components set to `1`.\n",
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ],
+    "functions": [
+      {
+        "name": "vector.create",
+        "summary": "Creates a new vector with the given component values.\n",
+        "description": "Creates a new vector with the given component values.\n",
+        "parameters": [
+          {
+            "name": "x",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "z",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.magnitude",
+        "summary": "Calculates the magnitude of a given vector.\n",
+        "description": "Calculates the magnitude of a given vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.normalize",
+        "summary": "Computes the normalized version (unit vector) of a given vector.\n",
+        "description": "Computes the normalized version (unit vector) of a given vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.cross",
+        "summary": "Computes the cross product of two vectors.\n",
+        "description": "Computes the cross product of two vectors.\n",
+        "parameters": [
+          {
+            "name": "vec1",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "vec2",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.dot",
+        "summary": "Computes the dot product of two vectors.\n",
+        "description": "Computes the dot product of two vectors.\n",
+        "parameters": [
+          {
+            "name": "vec1",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "vec2",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.angle",
+        "summary": "Computes the angle between two vectors in radians.\n",
+        "description": "Computes the angle between two vectors in radians. The axis, if specified,\nis used to determine the sign of the angle.\n",
+        "parameters": [
+          {
+            "name": "vec1",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "vec2",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "axis",
+            "type": "vector?",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "number",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.floor",
+        "summary": "Applies `Library.math.floor()` to every component of the input vector.\n",
+        "description": "Applies `Library.math.floor()` to every component of the input vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.ceil",
+        "summary": "Applies `Library.math.ceil()` to every component of the input vector.\n",
+        "description": "Applies `Library.math.ceil()` to every component of the input vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.abs",
+        "summary": "Applies `Library.math.abs()` to every component of the input vector.\n",
+        "description": "Applies `Library.math.abs()` to every component of the input vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.sign",
+        "summary": "Applies `Library.math.sign()` to every component of the input vector.\n",
+        "description": "Applies `Library.math.sign()` to every component of the input vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.clamp",
+        "summary": "Applies `Library.math.clamp()` to every component of the input vector.\n",
+        "description": "Applies `Library.math.clamp()` to every component of the input vector.\n",
+        "parameters": [
+          {
+            "name": "vec",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "min",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "max",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.lerp",
+        "summary": "Returns a vector linearly interpolated between two vectors by a fractional\nalpha.\n",
+        "description": "Returns a vector linearly interpolated between two vectors (`vec1`,\n`vec2`) by the fraction `alpha`. Note that `alpha` is **not** limited to\nthe range `[0, 1]`.\n",
+        "parameters": [
+          {
+            "name": "vec1",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "vec2",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          },
+          {
+            "name": "alpha",
+            "type": "number",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.max",
+        "summary": "Applies `Library.math.max()` to the corresponding components of the input\nvectors.\n",
+        "description": "Applies `Library.math.max()` to the corresponding components of the input\nvectors.\n",
+        "parameters": [
+          {
+            "name": "...",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      },
+      {
+        "name": "vector.min",
+        "summary": "Applies `Library.math.min()` to the corresponding components of the input\nvectors.\n",
+        "description": "Applies `Library.math.min()` to the corresponding components of the input\nvectors.\n",
+        "parameters": [
+          {
+            "name": "...",
+            "type": "vector",
+            "default": null,
+            "summary": ""
+          }
+        ],
+        "returns": [
+          {
+            "type": "vector",
+            "summary": ""
+          }
+        ],
+        "tags": [],
+        "code_samples": [],
+        "deprecation_message": ""
+      }
+    ]
+  }
+}
